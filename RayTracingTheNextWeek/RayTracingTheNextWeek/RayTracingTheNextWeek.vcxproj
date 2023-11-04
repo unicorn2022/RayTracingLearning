@@ -131,16 +131,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material\Dielectric.cpp" />
     <ClCompile Include="Material\Lambertian.cpp" />
-    <ClCompile Include="Material\MaterialBase.cpp" />
     <ClCompile Include="Material\Metal.cpp" />
-    <ClCompile Include="Math\Ray.cpp" />
     <ClCompile Include="Math\Vec3.cpp" />
-    <ClCompile Include="Object\ObjectBase.cpp" />
     <ClCompile Include="Object\ObjectWorld.cpp" />
     <ClCompile Include="Object\Sphere.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera\Camera.h" />
+    <ClInclude Include="config.h" />
     <ClInclude Include="Material\Dielectric.h" />
     <ClInclude Include="Material\Lambertian.h" />
     <ClInclude Include="Material\MaterialBase.h" />

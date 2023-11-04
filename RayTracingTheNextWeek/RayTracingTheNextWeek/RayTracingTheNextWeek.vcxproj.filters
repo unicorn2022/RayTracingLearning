@@ -54,20 +54,11 @@
     <ClCompile Include="Material\Lambertian.cpp">
       <Filter>源文件\Material</Filter>
     </ClCompile>
-    <ClCompile Include="Material\MaterialBase.cpp">
-      <Filter>源文件\Material</Filter>
-    </ClCompile>
     <ClCompile Include="Material\Metal.cpp">
       <Filter>源文件\Material</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Ray.cpp">
-      <Filter>源文件\Math</Filter>
-    </ClCompile>
     <ClCompile Include="Math\Vec3.cpp">
       <Filter>源文件\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Object\ObjectBase.cpp">
-      <Filter>源文件\Object</Filter>
     </ClCompile>
     <ClCompile Include="Object\ObjectWorld.cpp">
       <Filter>源文件\Object</Filter>
@@ -109,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="Utils\Utils.h">
       <Filter>头文件\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
