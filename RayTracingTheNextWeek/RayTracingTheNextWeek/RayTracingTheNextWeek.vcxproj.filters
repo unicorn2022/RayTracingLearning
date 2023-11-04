@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\Camera">
+      <UniqueIdentifier>{d85c0638-901d-4d6d-87e1-bfa7944c714e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Object">
+      <UniqueIdentifier>{7cdf9d8b-b144-4cf1-b443-564659206314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Camera">
+      <UniqueIdentifier>{3d2b31cb-3a28-416b-8f44-10fde5975b68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Object">
+      <UniqueIdentifier>{97b09e4e-dc03-49ad-b7a7-36fac0c2a226}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Math">
+      <UniqueIdentifier>{b85435ec-6096-4c7b-aeb5-404bcf0b7fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Material">
+      <UniqueIdentifier>{1b4c54fb-86e1-4d2c-aba6-658aa18e2c9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Material">
+      <UniqueIdentifier>{cbb16c71-19a4-4ef1-8133-af30e45d8ec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Utils">
+      <UniqueIdentifier>{40e075eb-03d7-480b-b874-c216d9a6d51e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Math">
+      <UniqueIdentifier>{a36e8c88-1a78-4708-b146-d47aa1b36f91}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\Camera.cpp">
+      <Filter>源文件\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\Dielectric.cpp">
+      <Filter>源文件\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\Lambertian.cpp">
+      <Filter>源文件\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\MaterialBase.cpp">
+      <Filter>源文件\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\Metal.cpp">
+      <Filter>源文件\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Ray.cpp">
+      <Filter>源文件\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vec3.cpp">
+      <Filter>源文件\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\ObjectBase.cpp">
+      <Filter>源文件\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\ObjectWorld.cpp">
+      <Filter>源文件\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Sphere.cpp">
+      <Filter>源文件\Object</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera\Camera.h">
+      <Filter>头文件\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Material\Dielectric.h">
+      <Filter>头文件\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Material\Lambertian.h">
+      <Filter>头文件\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Material\MaterialBase.h">
+      <Filter>头文件\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Material\Metal.h">
+      <Filter>头文件\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Ray.h">
+      <Filter>头文件\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vec3.h">
+      <Filter>头文件\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\ObjectBase.h">
+      <Filter>头文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\ObjectWorld.h">
+      <Filter>头文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Sphere.h">
+      <Filter>头文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Utils.h">
+      <Filter>头文件\Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
