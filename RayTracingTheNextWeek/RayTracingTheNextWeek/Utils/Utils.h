@@ -5,6 +5,8 @@
 #include <vector>
 #include "../Math/Vec3.h"
 
+static const double PI = std::_Pi;
+
 /* 随机数生成器 */
 class Random {
 public:
@@ -18,14 +20,17 @@ public:
 	}
 
 	/*
-	* @brief 返回单位球中的随机点
+	* @brief 返回单位球面上的随机点
 	*/
 	static Vec3 random_unit_sphere() {
-		Vec3 p;
-		do {
-			p = 2 * Vec3(random_double_01(), random_double_01(), random_double_01()) - Vec3(1.0f);
-		} while (p.length_squared() >= 1.0);
-		return p;
+		double theta = random_double_01() * 2 * PI;
+		double phi = random_double_01() * PI;
+
+		double x = sin(phi) * cos(theta);
+		double y = sin(phi) * sin(theta);
+		double z = cos(phi);
+
+		return Vec3(x, y, z);
 	}
 };
 
