@@ -29,3 +29,10 @@ bool Sphere::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const 
 
 	return true;
 }
+
+AABB Sphere::GetBox() const {
+	return AABB(
+		center - Vec3(radius, radius, radius),
+		center + Vec3(radius, radius, radius)
+	);
+}

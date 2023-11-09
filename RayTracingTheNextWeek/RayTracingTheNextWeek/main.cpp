@@ -44,32 +44,31 @@ void AddObjects() {
 		New<Lambertian>(Color(0.5, 0.5, 0.5)))
 	);	
 	// 小球
-	for(int a = -2; a < 2; a++)
-		for (int b = -2; b < 2; b++) {
+	for(int a = -3; a < 3; a++)
+		for (int b = -3; b < 3; b++) {
 			double choose_material = Random::rand01();
 			Point3 center(a + 0.9 * Random::rand01(), 0.2, b + 0.9 * Random::rand01());
-			if ((center - Point3(4, 0.2, 0)).length() > 0.9) {
-				if (choose_material < 0.55) {
-					world.Add(New<SphereMoving>(
-						center, center + Vec3(0, 0.5 * Random::rand01(), 0),
-						0.0, 1.0,
-						0.2,
-						New<Lambertian>(Color(Random::rand01(), Random::rand01(), Random::rand01())))
-					);
-				}
-				else if (choose_material < 0.85) {
-					world.Add(New<Sphere>(
-						center,
-						0.2,
-						New<Metal>(Color(0.5 * (1 + Random::rand01()), 0.5 * (1 + Random::rand01()), 0.5 * Random::rand01())))
-					);
-				}
-				else {
-					world.Add(New<Sphere>(
-						center, 
-						0.2, 
-						New<Dielectric>(1.5)));
-				}
+
+			if (choose_material < 0.55) {
+				world.Add(New<SphereMoving>(
+					center, center + Vec3(0, 0.5 * Random::rand01(), 0),
+					0.0, 1.0,
+					0.2,
+					New<Lambertian>(Color(Random::rand01(), Random::rand01(), Random::rand01())))
+				);
+			}
+			else if (choose_material < 0.85) {
+				world.Add(New<Sphere>(
+					center,
+					0.2,
+					New<Metal>(Color(0.5 * (1 + Random::rand01()), 0.5 * (1 + Random::rand01()), 0.5 * Random::rand01())))
+				);
+			}
+			else {
+				world.Add(New<Sphere>(
+					center, 
+					0.2, 
+					New<Dielectric>(1.5)));
 			}
 		}
 	// 大球
@@ -88,6 +87,8 @@ void AddObjects() {
 		1.0,
 		New<Metal>(Color(0.7, 0.6, 0.5), 0.0))
 	);
+
+	world.Build();
 }
 
 void Render(int L, int R, bool single) {

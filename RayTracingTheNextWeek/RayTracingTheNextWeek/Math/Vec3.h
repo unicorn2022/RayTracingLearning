@@ -26,6 +26,9 @@ public:
 	Vec3 operator*(const Vec3& v) const;
 	Vec3 operator*(const double& t) const;
 	Vec3 operator/(const double& t) const;
+	bool operator<(const Vec3& v) const;
+	bool operator==(const Vec3& v) const;
+	bool operator!=(const Vec3& v) const;
 	double dot(const Vec3& v) const;
 	Vec3 cross(const Vec3& v) const;
 

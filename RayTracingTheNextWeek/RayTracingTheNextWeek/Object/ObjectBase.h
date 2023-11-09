@@ -2,6 +2,7 @@
 
 #include "../Math/Ray.h"
 #include "../Material/MaterialBase.h"
+#include "AABB.h"
 
 class MaterialBase;
 
@@ -33,5 +34,9 @@ public:
 	*/
 	virtual bool hit(const Ray& r, double t_min, double t_max, HitInfo& info) const = 0;
 
+	/*
+	* @brief 获取当前对象的包围盒
+	*/
+	virtual AABB GetBox() const = 0;
 };
 

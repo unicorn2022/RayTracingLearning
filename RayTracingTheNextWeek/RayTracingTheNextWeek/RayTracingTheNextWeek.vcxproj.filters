@@ -69,6 +69,12 @@
     <ClCompile Include="Object\SphereMoving.cpp">
       <Filter>源文件\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Object\AABB.cpp">
+      <Filter>源文件\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\BVHnode.cpp">
+      <Filter>源文件\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera\Camera.h">
@@ -108,6 +114,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Object\SphereMoving.h">
+      <Filter>头文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\AABB.h">
+      <Filter>头文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\BVHnode.h">
       <Filter>头文件\Object</Filter>
     </ClInclude>
   </ItemGroup>

@@ -50,6 +50,23 @@ Vec3 Vec3::operator/(const double& t) const {
     return (*this) * (1 / t);
 }
 
+bool Vec3::operator<(const Vec3& v) const {
+    for(int i = 0; i < 3; i++)
+        if(e[i] != v[i]) return e[i] < v[i];
+    return true;
+}
+
+bool Vec3::operator==(const Vec3& v) const
+{
+    for (int i = 0; i < 3; i++)
+        if (e[i] - v[i] > 1e-5) return false;
+    return true;
+}
+
+bool Vec3::operator!=(const Vec3& v) const {
+    return !(*this == v);
+}
+
 double Vec3::dot(const Vec3& v) const {
     return e[0] * v[0] + e[1] * v[1] + e[2] * v[2];
 }

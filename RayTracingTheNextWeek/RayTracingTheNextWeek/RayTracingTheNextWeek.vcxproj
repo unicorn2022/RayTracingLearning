@@ -133,6 +133,8 @@
     <ClCompile Include="Material\Lambertian.cpp" />
     <ClCompile Include="Material\Metal.cpp" />
     <ClCompile Include="Math\Vec3.cpp" />
+    <ClCompile Include="Object\AABB.cpp" />
+    <ClCompile Include="Object\BVHnode.cpp" />
     <ClCompile Include="Object\ObjectWorld.cpp" />
     <ClCompile Include="Object\Sphere.cpp" />
     <ClCompile Include="Object\SphereMoving.cpp" />
@@ -146,6 +148,8 @@
     <ClInclude Include="Material\Metal.h" />
     <ClInclude Include="Math\Ray.h" />
     <ClInclude Include="Math\Vec3.h" />
+    <ClInclude Include="Object\AABB.h" />
+    <ClInclude Include="Object\BVHnode.h" />
     <ClInclude Include="Object\ObjectBase.h" />
     <ClInclude Include="Object\ObjectWorld.h" />
     <ClInclude Include="Object\Sphere.h" />

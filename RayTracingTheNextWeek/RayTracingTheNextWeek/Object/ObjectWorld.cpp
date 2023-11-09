@@ -1,6 +1,33 @@
 ﻿#include "ObjectWorld.h"
 #include "../config.h"
 
+#include <ctime>
+
+bool ObjectWorld::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const {
+	//auto t = clock();
+	//return root->hit(r, t_min, t_max, info);
+	//std::cerr << "BVH hit time: " << clock() - t << "\n\n";
+
+	//t = clock();
+	bool hit_anything = false;
+	HitInfo temp_info;
+	double closest_so_far = t_max; // 获取 ray 相交的最小的 t
+
+	for (const auto& object : objects) {
+		if (object->hit(r, t_min, closest_so_far, temp_info)) {
+			hit_anything = true;
+			closest_so_far = temp_info.t;
+			info = temp_info;
+		}
+	}
+	
+	//std::cerr << "object cnt = " << objects.size() << std::endl;
+	//std::cerr << "hit time: " << clock() - t << std::endl;
+	//exit(0);
+
+	return hit_anything;
+}
+
 Color ObjectWorld::GetColor(const Ray& r, int depth) {
 	HitInfo record;
 
@@ -21,18 +48,38 @@ Color ObjectWorld::GetColor(const Ray& r, int depth) {
 	}
 }
 
-bool ObjectWorld::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const {
-	HitInfo temp_info;
-	bool hit_anything = false;
-	double closest_so_far = t_max; // 获取 ray 相交的最小的 t
+void ObjectWorld::Build() {
+	int size = objects.size();
 
-	for (const auto& object : objects) {
-		if (object->hit(r, t_min, closest_so_far, temp_info)) {
-			hit_anything = true;
-			closest_so_far = temp_info.t;
-			info = temp_info;
-		}
+	// 递归构建 BVH
+	root = New<BVHnode>();
+	build(root, 0, size - 1);
+}
+
+void ObjectWorld::build(Ref<BVHnode> u, int L, int R, int deep) {
+	/*std::sort(objects.begin() + L, objects.begin() + R + 1, [&](const Ref<ObjectBase>& a, const Ref<ObjectBase>& b) {
+		return a->GetBox().Min()[deep % 3] < b->GetBox().Min()[deep % 3];
+	});*/
+
+	//static int BVHnode_cnt = 0;
+	//std::cerr << "BVHnode_cnt = " << ++BVHnode_cnt << std::endl;
+	u->L = L; u->R = R;
+	int size = R - L + 1;
+	if (size == 1) {
+		u->left = u->right = nullptr;
+		u->object = objects[L];
 	}
+	else {
+		int mid = (L + R) >> 1;
+		u->left = New<BVHnode>();
+		u->right = New<BVHnode>();
+		u->object = nullptr;
+		build(u->left, L, mid);
+		build(u->right, mid + 1, R);
+	}
+	u->Update();
 
-	return hit_anything;
+	//std::cerr << "L = " << L << ",\tR = " << R << std::endl;
+	//std::cerr << "u->box = (" << u->GetBox().Min() << "),\t(" << u->GetBox().Max() <<")\n";
+	
 }

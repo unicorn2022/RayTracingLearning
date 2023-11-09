@@ -1,0 +1,51 @@
+﻿#include "BVHnode.h"
+#include "../Utils/Utils.h"
+
+bool BVHnode::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const {
+	static int cnt = 0;
+
+	// 叶节点, 则判断与当前物体是否碰撞
+	if (left == nullptr && right == nullptr) {
+		//std::cerr << "node hit: " << ++cnt << "\n";
+		return object->hit(r, t_min, t_max, info);
+	}
+	
+	// 内部节点, 判断与当前包围盒是否碰撞, 进行剪枝
+	if (!box.hit(r, t_min, t_max)) return false;
+	
+
+	// 递归判断左右儿子
+	HitInfo left_info, right_info;
+	bool left_hit = left->hit(r, t_min, t_max, left_info);
+	bool right_hit = right->hit(r, t_min, t_max, right_info);
+
+	if (left_hit && right_hit) {
+		if (left_info.t < right_info.t) info = left_info;
+		else info = right_info;
+		return true;
+	}
+	else if (left_hit) {
+		info = left_info;
+		return true;
+	}
+	else if (right_hit) {
+		info = right_info;
+		return true;
+	}
+	else return false;
+}
+
+AABB BVHnode::GetBox() const{
+	return box;
+}
+
+void BVHnode::Update() {
+	if(left == nullptr && right == nullptr)
+		box = object->GetBox();
+	else if(left != nullptr && right == nullptr)
+		box = left->GetBox();
+	else if(left == nullptr && right != nullptr)
+		box = right->GetBox();
+	else
+		box = AABB::Merge(left->GetBox(), right->GetBox());
+}

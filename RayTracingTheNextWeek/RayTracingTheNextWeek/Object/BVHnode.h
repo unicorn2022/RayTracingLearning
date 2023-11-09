@@ -1,14 +1,9 @@
 ﻿#pragma once
-
 #include "ObjectBase.h"
-#include "../Utils/Utils.h"
-#include "../Material/MaterialBase.h"
+#include <vector>
 
-
-class Sphere : public ObjectBase {
+class BVHnode : public ObjectBase {
 public:
-	Sphere(Point3 c, double r, Ref<MaterialBase> m) : center(c), radius(r), material(m) {}
-
 	/*
 	* @brief 判断光线是否与当前对象碰撞
 	* @param r 光线
@@ -18,15 +13,19 @@ public:
 	* @return 是否碰撞
 	*/
 	virtual bool hit(const Ray& r, double t_min, double t_max, HitInfo& info) const override;
-
+	
 	/*
 	* @brief 获取当前对象的包围盒
 	*/
 	virtual AABB GetBox() const override;
 
-private:
-	Point3 center;
-	double radius;
-	Ref<MaterialBase> material;
+	void Update();
+
+public:
+	Ref<BVHnode> left;
+	Ref<BVHnode> right;
+	Ref<ObjectBase> object;
+	int L, R;
+	AABB box;
 };
 

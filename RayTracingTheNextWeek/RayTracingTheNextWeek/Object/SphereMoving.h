@@ -27,6 +27,11 @@ public:
 	virtual bool hit(const Ray& r, double t_min, double t_max, HitInfo& info) const override;
 
 	/*
+	* @brief 获取当前对象的包围盒
+	*/
+	virtual AABB GetBox() const override;
+
+	/*
 	* @brief 获取 time 时刻的球心坐标
 	* @param time 时间
 	*/

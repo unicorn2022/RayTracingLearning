@@ -31,6 +31,18 @@ bool SphereMoving::hit(const Ray& r, double t_min, double t_max, HitInfo& info) 
 	return true;
 }
 
+AABB SphereMoving::GetBox() const {
+	AABB A(
+		center1 - Vec3(radius, radius, radius),
+		center1 + Vec3(radius, radius, radius)
+	);
+	AABB B(
+		center2 - Vec3(radius, radius, radius),
+		center2 + Vec3(radius, radius, radius)
+	);
+	return AABB::Merge(A, B);
+}
+
 Point3 SphereMoving::GetCenter(double time) const {
     return center1 + ((time - time1) / (time2 - time1)) * (center2 - center1);
 }
