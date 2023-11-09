@@ -1,12 +1,12 @@
 ﻿#include "BVHnode.h"
 #include "../Utils/Utils.h"
 
-bool BVHnode::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const {
-	static int cnt = 0;
+//extern int BVH_leaf_hit;
 
+bool BVHnode::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const {
 	// 叶节点, 则判断与当前物体是否碰撞
 	if (left == nullptr && right == nullptr) {
-		//std::cerr << "node hit: " << ++cnt << "\n";
+		//BVH_leaf_hit++;
 		return object->hit(r, t_min, t_max, info);
 	}
 	

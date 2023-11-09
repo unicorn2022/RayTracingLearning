@@ -1,8 +1,9 @@
 ﻿#include "AABB.h"
 
+//extern int AABB_hit;
+
 bool AABB::hit(const Ray& r, double t_min, double t_max) const {
-	//static int cnt = 0;
-	//std::cerr << "AABB hit: " << ++cnt << "\n";
+	//AABB_hit++;
 
 	// 计算XYZ三个轴的 t 值
 	// t1 = (min.x - origin.x) / direction.x

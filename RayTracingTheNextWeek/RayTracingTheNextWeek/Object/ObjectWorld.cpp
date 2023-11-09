@@ -3,12 +3,22 @@
 
 #include <ctime>
 
+//extern int AABB_hit;
+//extern int BVH_leaf_hit;
+//extern int BVH_node_cnt;
+
 bool ObjectWorld::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const {
 	//auto t = clock();
 	//return root->hit(r, t_min, t_max, info);
+	
+	//std::cerr << "AABB_hit = " << AABB_hit << std::endl;
+	//std::cerr << "BVH_leaf_hit = " << BVH_leaf_hit << std::endl;
+	//std::cerr << "total hit = " << AABB_hit + BVH_leaf_hit << std::endl;
+	//std::cerr << "BVH_node_cnt = " << BVH_node_cnt << std::endl;
+	//std::cerr << "BVH info.t = " << info.t << " ";
 	//std::cerr << "BVH hit time: " << clock() - t << "\n\n";
-
 	//t = clock();
+
 	bool hit_anything = false;
 	HitInfo temp_info;
 	double closest_so_far = t_max; // 获取 ray 相交的最小的 t
@@ -21,7 +31,9 @@ bool ObjectWorld::hit(const Ray& r, double t_min, double t_max, HitInfo& info) c
 		}
 	}
 	
+	
 	//std::cerr << "object cnt = " << objects.size() << std::endl;
+	//std::cerr << "info.t = " << info.t << " ";
 	//std::cerr << "hit time: " << clock() - t << std::endl;
 	//exit(0);
 
@@ -60,9 +72,8 @@ void ObjectWorld::build(Ref<BVHnode> u, int L, int R, int deep) {
 	/*std::sort(objects.begin() + L, objects.begin() + R + 1, [&](const Ref<ObjectBase>& a, const Ref<ObjectBase>& b) {
 		return a->GetBox().Min()[deep % 3] < b->GetBox().Min()[deep % 3];
 	});*/
+	//BVH_node_cnt++;
 
-	//static int BVHnode_cnt = 0;
-	//std::cerr << "BVHnode_cnt = " << ++BVHnode_cnt << std::endl;
 	u->L = L; u->R = R;
 	int size = R - L + 1;
 	if (size == 1) {

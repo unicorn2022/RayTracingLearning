@@ -36,6 +36,10 @@ namespace {
 	Camera main_camera(from, at, Vec3(0, 1, 0), 20, aspect, aperture, 0.7 * dist_to_focus, time_start, time_end);	// 主相机
 }
 
+//int AABB_hit = 0;
+//int BVH_leaf_hit = 0;
+//int BVH_node_cnt = 0;
+
 void AddObjects() {
 	// 地面
 	world.Add(New<Sphere>(
@@ -44,8 +48,8 @@ void AddObjects() {
 		New<Lambertian>(Color(0.5, 0.5, 0.5)))
 	);	
 	// 小球
-	for(int a = -3; a < 3; a++)
-		for (int b = -3; b < 3; b++) {
+	for(int a = -5; a < 5; a++)
+		for (int b = -5; b < 5; b++) {
 			double choose_material = Random::rand01();
 			Point3 center(a + 0.9 * Random::rand01(), 0.2, b + 0.9 * Random::rand01());
 
