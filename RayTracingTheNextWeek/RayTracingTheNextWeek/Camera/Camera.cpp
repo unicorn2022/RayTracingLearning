@@ -1,7 +1,7 @@
 ﻿#include "Camera.h"
 
-Camera::Camera(Vec3 lookfrom, Vec3 lookat, Vec3 vup, double vfov, double aspect, double aperture, double focus)
-	: position(lookfrom), lens_radius(aperture / 2) {
+Camera::Camera(Vec3 lookfrom, Vec3 lookat, Vec3 vup, double vfov, double aspect, double aperture, double focus, double t1, double t2)
+	: position(lookfrom), lens_radius(aperture / 2), time1(t1), time2(t2) {
 	double theta = vfov * std::_Pi / 180;
 	double half_height = tan(theta / 2) * focus; // tan(θ/2) = (h/2) / 焦距
 	double half_width = aspect * half_height;
@@ -19,11 +19,13 @@ Camera::Camera(Vec3 lookfrom, Vec3 lookat, Vec3 vup, double vfov, double aspect,
 
 Ray Camera::GetRay(double u, double v) const {
 	// 光圈随机偏移
-	Vec3 rd = lens_radius * Random::random_unit_sphere();
+	Vec3 rd = lens_radius * Random::rand_unit_sphere();
 	Vec3 offset = u * rd.x() + v * rd.y();
 
 	// 光线的起点为原点, 方向指向观察平面上的当前像素
+	// 当前时间为 [time1, time2] 之间的随机值
 	Vec3 start = position + offset;
 	Vec3 target = low_left_corner + u * horizontal + v * vertical;
-	return Ray(start, target - start);
+	double time = time1 + Random::rand01() * (time2 - time1);
+	return Ray(start, target - start, time);
 }

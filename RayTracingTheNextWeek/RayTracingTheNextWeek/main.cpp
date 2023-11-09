@@ -7,6 +7,7 @@
 #include "Utils/Utils.h"
 #include "Camera/Camera.h"
 #include "Object/Sphere.h"
+#include "Object/SphereMoving.h"
 #include "Object/ObjectWorld.h"
 #include "Material/Lambertian.h"
 #include "Material/Dielectric.h"
@@ -27,32 +28,65 @@ namespace {
 	ObjectWorld world(background);	// 世界中的物体
 
 	/* 相机设置 */
-	Vec3 from(3, 3, 2);
-	Vec3 at(0, 0, -1);
-	double focus = (from - at).length();
-	Camera main_camera(from, at, Vec3(0, 1, 0), 20, aspect, 2.0, focus);	// 主相机
+	Vec3 from(13, 2, 3);
+	Vec3 at(0, 0, 0);
+	double dist_to_focus = 10;
+	double aperture = 0.0;
+	double time_start = 0, time_end = 1.0;
+	Camera main_camera(from, at, Vec3(0, 1, 0), 20, aspect, aperture, 0.7 * dist_to_focus, time_start, time_end);	// 主相机
 }
 
 void AddObjects() {
-	world.Add(std::make_shared<Sphere>(
-		Point3(0, 0, -1),
-		0.5,
-		std::make_shared<Lambertian>(Color(0.1, 0.2, 0.5)))
+	// 地面
+	world.Add(New<Sphere>(
+		Point3(0, -1000, 0), 
+		1000, 
+		New<Lambertian>(Color(0.5, 0.5, 0.5)))
+	);	
+	// 小球
+	for(int a = -2; a < 2; a++)
+		for (int b = -2; b < 2; b++) {
+			double choose_material = Random::rand01();
+			Point3 center(a + 0.9 * Random::rand01(), 0.2, b + 0.9 * Random::rand01());
+			if ((center - Point3(4, 0.2, 0)).length() > 0.9) {
+				if (choose_material < 0.55) {
+					world.Add(New<SphereMoving>(
+						center, center + Vec3(0, 0.5 * Random::rand01(), 0),
+						0.0, 1.0,
+						0.2,
+						New<Lambertian>(Color(Random::rand01(), Random::rand01(), Random::rand01())))
+					);
+				}
+				else if (choose_material < 0.85) {
+					world.Add(New<Sphere>(
+						center,
+						0.2,
+						New<Metal>(Color(0.5 * (1 + Random::rand01()), 0.5 * (1 + Random::rand01()), 0.5 * Random::rand01())))
+					);
+				}
+				else {
+					world.Add(New<Sphere>(
+						center, 
+						0.2, 
+						New<Dielectric>(1.5)));
+				}
+			}
+		}
+	// 大球
+	world.Add(New<Sphere>(
+		Point3(0, 1, 0),
+		1.0,
+		New<Dielectric>(1.5))
 	);
-	world.Add(std::make_shared<Sphere>(
-		Point3(0, -100.5, -1),
-		100,
-		std::make_shared<Metal>(Color(0.8, 0.8, 0), 0.3))
+	world.Add(New<Sphere>(
+		Point3(-4, 1, 0),
+		1.0,
+		New<Lambertian>(Color(0.4, 0.2, 0.1)))
 	);
-	world.Add(std::make_shared<Sphere>(
-		Point3(-1, 0, -1),
-		0.5,
-		std::make_shared<Metal>(Color(0, 0, 1)))
-	);
-	world.Add(std::make_shared<Sphere>(
-		Point3(1, 0, -1),
-		0.5,
-		std::make_shared<Lambertian>(Color(1, 0, 0)))
+	world.Add(New<Sphere>(
+		Point3(4, 1, 0),
+		1.0,
+		New<Metal>(Color(0.7, 0.6, 0.5), 0.0))
 	);
 }
 
@@ -62,8 +96,8 @@ void Render(int L, int R, bool single) {
 			// 每个像素随机采样 samples_per_pixel 次, 并取平均值
 			for (int cnt = 0; cnt < samples_per_pixel; cnt++) {
 				// 当前像素的[0,1]坐标
-				auto u = double(i + Random::random_double_01()) / Image_Width;
-				auto v = double(j + Random::random_double_01()) / Image_Height;
+				auto u = double(i + Random::rand01()) / Image_Width;
+				auto v = double(j + Random::rand01()) / Image_Height;
 
 				// 获取当前像素对应的光线
 				Ray r = main_camera.GetRay(u, v);

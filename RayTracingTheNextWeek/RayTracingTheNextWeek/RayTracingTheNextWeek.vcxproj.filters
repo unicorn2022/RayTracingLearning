@@ -66,6 +66,9 @@
     <ClCompile Include="Object\Sphere.cpp">
       <Filter>源文件\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Object\SphereMoving.cpp">
+      <Filter>源文件\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera\Camera.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="config.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\SphereMoving.h">
+      <Filter>头文件\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

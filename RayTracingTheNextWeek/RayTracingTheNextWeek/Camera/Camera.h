@@ -15,8 +15,10 @@ public:
 	* @param aspect		宽高比
 	* @param aperture	光圈直径
 	* @param focus		焦距
+	* @param t1			快门开启时间
+	* @param t2			快门关闭时间
 	*/
-	Camera(Vec3 lookfrom, Vec3 lookat, Vec3 vup, double vfov, double aspect, double aperture, double focus);
+	Camera(Vec3 lookfrom, Vec3 lookat, Vec3 vup, double vfov, double aspect, double aperture, double focus, double t1, double t2);
 
 	/*
 	* @brief 获取当前像素对应的光线
@@ -33,4 +35,6 @@ private:
 	Vec3 horizontal;		// 屏幕宽度向量: x轴
 	Vec3 vertical;			// 屏幕高度向量: y轴
 	double lens_radius;		// 光圈半径
+	double time1;			// 快门开启时间
+	double time2;			// 快门关闭时间
 };

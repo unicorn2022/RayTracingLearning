@@ -13,7 +13,7 @@ public:
 	/*
 	* @brief 返回一个[0,1)的随机数
 	*/
-	static double random_double_01() {
+	static double rand01() {
 		static std::mt19937 mt;
 		static std::uniform_real_distribution<double> rand_double;
 		return rand_double(mt);
@@ -22,9 +22,9 @@ public:
 	/*
 	* @brief 返回单位球面上的随机点
 	*/
-	static Vec3 random_unit_sphere() {
-		double theta = random_double_01() * 2 * PI;
-		double phi = random_double_01() * PI;
+	static Vec3 rand_unit_sphere() {
+		double theta = rand01() * 2 * PI;
+		double phi = rand01() * PI;
 
 		double x = sin(phi) * cos(theta);
 		double y = sin(phi) * sin(theta);
@@ -35,3 +35,4 @@ public:
 };
 
 #define Ref std::shared_ptr
+#define New std::make_shared

@@ -33,7 +33,7 @@ bool Dielectric::scatter(const Ray& r_in, const HitInfo& info, Color& attenuatio
 		reflect_prob = 1.0;
 
 	// 根据反射概率, 随机选择反射或折射
-	if (Random::random_double_01() < reflect_prob)
+	if (Random::rand01() < reflect_prob)
 		r_out = Ray(info.position, reflected);
 	else
 		r_out = Ray(info.position, refracted);
