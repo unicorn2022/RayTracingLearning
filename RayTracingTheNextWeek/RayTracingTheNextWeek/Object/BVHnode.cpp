@@ -16,8 +16,8 @@ bool BVHnode::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const
 
 	// 递归判断左右儿子
 	HitInfo left_info, right_info;
-	bool left_hit = left->hit(r, t_min, t_max, left_info);
-	bool right_hit = right->hit(r, t_min, t_max, right_info);
+	bool left_hit = (left != nullptr) && left->hit(r, t_min, t_max, left_info);
+	bool right_hit = (right != nullptr) && right->hit(r, t_min, t_max, right_info);
 
 	if (left_hit && right_hit) {
 		if (left_info.t < right_info.t) info = left_info;
