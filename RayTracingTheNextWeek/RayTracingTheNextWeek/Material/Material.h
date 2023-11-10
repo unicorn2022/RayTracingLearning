@@ -1,12 +1,12 @@
 ﻿#pragma once
 
 #include "../Math/Ray.h"
-#include "../Object/ObjectBase.h"
+#include "../Object/Object.h"
 #include "../Utils/Utils.h"
 
 class HitInfo;
 
-class MaterialBase {
+class Material {
 public:
 	/*
 	* @brief 生成散射光线

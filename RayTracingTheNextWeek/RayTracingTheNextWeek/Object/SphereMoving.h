@@ -1,9 +1,9 @@
 ﻿#pragma once
-#include "ObjectBase.h"
+#include "Object.h"
 #include "../Utils/Utils.h"
-#include "../Material/MaterialBase.h"
+#include "../Material/Material.h"
 
-class SphereMoving : public ObjectBase {
+class SphereMoving : public Object {
 public:
 	/*
 	* @param center1	time1时的球心坐标
@@ -13,7 +13,7 @@ public:
 	* @param radius		半径
 	* @param material	材质
 	*/
-	SphereMoving(Point3 center1, Point3 center2, double time1, double time2, double radius, Ref<MaterialBase> material)
+	SphereMoving(Point3 center1, Point3 center2, double time1, double time2, double radius, Ref<Material> material)
 		: center1(center1), center2(center2), time1(time1), time2(time2), radius(radius), material(material) {}
 
 	/*
@@ -43,6 +43,6 @@ private:
 	double time1;
 	double time2;
 	double radius;
-	Ref<MaterialBase> material;
+	Ref<Material> material;
 };
 

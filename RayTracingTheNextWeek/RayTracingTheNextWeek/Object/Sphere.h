@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-#include "ObjectBase.h"
+#include "Object.h"
 #include "../Utils/Utils.h"
-#include "../Material/MaterialBase.h"
+#include "../Material/Material.h"
 
 
-class Sphere : public ObjectBase {
+class Sphere : public Object {
 public:
-	Sphere(Point3 c, double r, Ref<MaterialBase> m) : center(c), radius(r), material(m) {}
+	Sphere(Point3 c, double r, Ref<Material> m) : center(c), radius(r), material(m) {}
 
 	/*
 	* @brief 判断光线是否与当前对象碰撞
@@ -27,6 +27,6 @@ public:
 private:
 	Point3 center;
 	double radius;
-	Ref<MaterialBase> material;
+	Ref<Material> material;
 };
 

@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include "MaterialBase.h"
-class Dielectric : public MaterialBase {
+#include "Material.h"
+class Dielectric : public Material {
 public:
 	/*
 	* @param refractive_index 折射率

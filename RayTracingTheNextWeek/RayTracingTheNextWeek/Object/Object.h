@@ -1,17 +1,17 @@
 ﻿#pragma once
 
 #include "../Math/Ray.h"
-#include "../Material/MaterialBase.h"
+#include "../Material/Material.h"
 #include "AABB.h"
 
-class MaterialBase;
+class Material;
 
 class HitInfo {
 public:
 	double t;			// ray 到碰撞点时 t 的大小
 	Point3 position;	// 碰撞点坐标
 	Vec3 normal;		// 碰撞点法线
-	std::shared_ptr<MaterialBase> material;// 碰撞点材质
+	std::shared_ptr<Material> material;// 碰撞点材质
 
 
 	// 保证 ray 的方向与法线方向相反
@@ -22,7 +22,7 @@ public:
 	}
 };
 
-class ObjectBase {
+class Object {
 public:
 	/*
 	* @brief 判断光线是否与当前对象碰撞

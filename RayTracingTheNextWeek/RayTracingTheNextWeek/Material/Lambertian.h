@@ -1,13 +1,14 @@
 ﻿#pragma once
-#include "MaterialBase.h"
+#include "Material.h"
+#include "../Texture/Texture.h"
 
 
-class Lambertian : public MaterialBase {
+class Lambertian : public Material {
 public:
 	/*
 	* @param albedo 反射率
 	*/
-	Lambertian(const Color& albedo) : albedo(albedo) {}
+	Lambertian(Ref<Texture> albedo) : albedo(albedo) {}
 
 	/*
 	* @brief 生成散射光线
@@ -20,6 +21,6 @@ public:
 	virtual bool scatter(const Ray& r_in, const HitInfo& info, Color& attenuation, Ray& r_out) const override;
 
 private:
-	Color albedo;
+	Ref<Texture> albedo;
 };
 

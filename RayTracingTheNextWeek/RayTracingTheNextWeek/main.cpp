@@ -12,6 +12,8 @@
 #include "Material/Lambertian.h"
 #include "Material/Dielectric.h"
 #include "Material/Metal.h"
+#include "Texture/TextureConstant.h"
+#include "Texture/TextureChecker.h"
 #include "config.h"
 
 /* 全局参数设置 */
@@ -45,27 +47,31 @@ void AddObjects() {
 	world.Add(New<Sphere>(
 		Point3(0, -1000, 0), 
 		1000, 
-		New<Lambertian>(Color(0.5, 0.5, 0.5)))
+		New<Lambertian>(New<TextureChecker>(
+			New<TextureConstant>(Color(0.2, 0.3, 0.1)),
+			New<TextureConstant>(Color(0.9, 0.9, 0.9))
+		)))
 	);	
 	// 小球
 	for(int a = -5; a < 5; a++)
 		for (int b = -5; b < 5; b++) {
 			double choose_material = Random::rand01();
 			Point3 center(a + 0.9 * Random::rand01(), 0.2, b + 0.9 * Random::rand01());
+			Color color(Random::rand01(), Random::rand01(), Random::rand01());
 
 			if (choose_material < 0.55) {
 				world.Add(New<SphereMoving>(
 					center, center + Vec3(0, 0.5 * Random::rand01(), 0),
 					0.0, 1.0,
 					0.2,
-					New<Lambertian>(Color(Random::rand01(), Random::rand01(), Random::rand01())))
+					New<Lambertian>(New<TextureConstant>(color)))
 				);
 			}
 			else if (choose_material < 0.85) {
 				world.Add(New<Sphere>(
 					center,
 					0.2,
-					New<Metal>(Color(0.5 * (1 + Random::rand01()), 0.5 * (1 + Random::rand01()), 0.5 * Random::rand01())))
+					New<Metal>(New<TextureConstant>(color)))
 				);
 			}
 			else {
@@ -84,12 +90,12 @@ void AddObjects() {
 	world.Add(New<Sphere>(
 		Point3(-4, 1, 0),
 		1.0,
-		New<Lambertian>(Color(0.4, 0.2, 0.1)))
+		New<Lambertian>(New<TextureConstant>(Color(0.4, 0.2, 0.1))))
 	);
 	world.Add(New<Sphere>(
 		Point3(4, 1, 0),
 		1.0,
-		New<Metal>(Color(0.7, 0.6, 0.5), 0.0))
+		New<Metal>(New<TextureConstant>(Color(0.7, 0.6, 0.5)), 0.0))
 	);
 
 	world.Build();

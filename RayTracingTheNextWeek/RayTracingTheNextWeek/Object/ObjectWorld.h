@@ -1,11 +1,11 @@
 ﻿#pragma once
 
-#include "ObjectBase.h"
+#include "Object.h"
 #include "BVHnode.h"
 #include "../Math/Vec3.h"
 #include "../Utils/Utils.h"
 
-class ObjectWorld : public ObjectBase {
+class ObjectWorld : public Object {
 public:
 	/*
 	* @param background: 背景颜色
@@ -13,7 +13,7 @@ public:
 	ObjectWorld(Color background) : background(background) {}
 
 	void Clear() { objects.clear(); }
-	void Add(Ref<ObjectBase> object) { objects.push_back(object); }
+	void Add(Ref<Object> object) { objects.push_back(object); }
 	
 	/*
 	* @brief 判断光线是否与当前对象碰撞
@@ -42,7 +42,7 @@ public:
 	* @brief 获取场景中的物体
 	* @param index 物体的索引
 	*/
-	Ref<ObjectBase> GetObject(int index) const { return objects[index]; }
+	Ref<Object> GetObject(int index) const { return objects[index]; }
 	
 	/*
 	* @brief 为当前场景构建 BVH
@@ -60,7 +60,7 @@ private:
 	*/
 	void build(Ref<BVHnode> u, int L, int R, int deep = 0);
 
-	std::vector<Ref<ObjectBase>> objects;
+	std::vector<Ref<Object>> objects;
 	Color background;
 	Ref<BVHnode> root;
 

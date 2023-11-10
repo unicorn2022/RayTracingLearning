@@ -40,6 +40,12 @@
     <Filter Include="头文件\Math">
       <UniqueIdentifier>{a36e8c88-1a78-4708-b146-d47aa1b36f91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Texture">
+      <UniqueIdentifier>{5cb20523-9d3c-4565-993b-b9068c2fbb07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Texture">
+      <UniqueIdentifier>{844ba9c7-89ba-4b10-bb94-d3fd5dfb981f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -75,6 +81,12 @@
     <ClCompile Include="Object\BVHnode.cpp">
       <Filter>源文件\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Texture\TextureConstant.cpp">
+      <Filter>源文件\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture\TextureChecker.cpp">
+      <Filter>源文件\Texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera\Camera.h">
@@ -86,7 +98,7 @@
     <ClInclude Include="Material\Lambertian.h">
       <Filter>头文件\Material</Filter>
     </ClInclude>
-    <ClInclude Include="Material\MaterialBase.h">
+    <ClInclude Include="Material\Material.h">
       <Filter>头文件\Material</Filter>
     </ClInclude>
     <ClInclude Include="Material\Metal.h">
@@ -98,7 +110,7 @@
     <ClInclude Include="Math\Vec3.h">
       <Filter>头文件\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Object\ObjectBase.h">
+    <ClInclude Include="Object\Object.h">
       <Filter>头文件\Object</Filter>
     </ClInclude>
     <ClInclude Include="Object\ObjectWorld.h">
@@ -121,6 +133,15 @@
     </ClInclude>
     <ClInclude Include="Object\BVHnode.h">
       <Filter>头文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture\Texture.h">
+      <Filter>头文件\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture\TextureConstant.h">
+      <Filter>头文件\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture\TextureChecker.h">
+      <Filter>头文件\Texture</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

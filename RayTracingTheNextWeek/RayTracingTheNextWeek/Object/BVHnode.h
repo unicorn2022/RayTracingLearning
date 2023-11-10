@@ -1,8 +1,8 @@
 ﻿#pragma once
-#include "ObjectBase.h"
+#include "Object.h"
 #include <vector>
 
-class BVHnode : public ObjectBase {
+class BVHnode : public Object {
 public:
 	/*
 	* @brief 判断光线是否与当前对象碰撞
@@ -24,7 +24,7 @@ public:
 public:
 	Ref<BVHnode> left;
 	Ref<BVHnode> right;
-	Ref<ObjectBase> object;
+	Ref<Object> object;
 	int L, R;
 	AABB box;
 };

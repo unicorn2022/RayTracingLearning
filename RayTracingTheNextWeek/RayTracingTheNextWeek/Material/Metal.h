@@ -1,12 +1,14 @@
 ﻿#pragma once
-#include "MaterialBase.h"
-class Metal : public MaterialBase {
+#include "Material.h"
+#include "../Texture/Texture.h"
+
+class Metal : public Material {
 public:
 	/*
 	* @param albedo 反射率
 	* @param fuzz 模糊度, 0为完全反射, 1为完全散射
 	*/
-	Metal(const Color& albedo, double fuzz = 0) : albedo(albedo), fuzz(fuzz) {}
+	Metal(Ref<Texture> albedo, double fuzz = 0) : albedo(albedo), fuzz(fuzz) {}
 
 
 	/*
@@ -20,7 +22,7 @@ public:
 	virtual bool scatter(const Ray& r_in, const HitInfo& info, Color& attenuation, Ray& r_out) const override;
 
 private:
-	Color albedo;
+	Ref<Texture> albedo;
 	double fuzz;
 };
 

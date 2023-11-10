@@ -138,22 +138,27 @@
     <ClCompile Include="Object\ObjectWorld.cpp" />
     <ClCompile Include="Object\Sphere.cpp" />
     <ClCompile Include="Object\SphereMoving.cpp" />
+    <ClCompile Include="Texture\TextureChecker.cpp" />
+    <ClCompile Include="Texture\TextureConstant.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="Material\Dielectric.h" />
     <ClInclude Include="Material\Lambertian.h" />
-    <ClInclude Include="Material\MaterialBase.h" />
+    <ClInclude Include="Material\Material.h" />
     <ClInclude Include="Material\Metal.h" />
     <ClInclude Include="Math\Ray.h" />
     <ClInclude Include="Math\Vec3.h" />
     <ClInclude Include="Object\AABB.h" />
     <ClInclude Include="Object\BVHnode.h" />
-    <ClInclude Include="Object\ObjectBase.h" />
+    <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Object\ObjectWorld.h" />
     <ClInclude Include="Object\Sphere.h" />
     <ClInclude Include="Object\SphereMoving.h" />
+    <ClInclude Include="Texture\Texture.h" />
+    <ClInclude Include="Texture\TextureChecker.h" />
+    <ClInclude Include="Texture\TextureConstant.h" />
     <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
