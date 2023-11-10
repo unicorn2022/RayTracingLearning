@@ -44,7 +44,7 @@ namespace {
 //int BVH_node_cnt = 0;
 
 void AddObjects() {
-	Ref<TextureNoise> perlin_texture = New<TextureNoise>();
+	Ref<TextureNoise> perlin_texture = New<TextureNoise>(6.3);
 
 	// 地面
 	world.Add(New<Sphere>(

@@ -4,7 +4,10 @@
 
 class TextureNoise : public Texture {
 public:
-	TextureNoise() {}
+	/*
+	* @param scale 噪声缩放
+	*/
+	TextureNoise(double scale = 1.0) : scale(scale) {}
 
 	/*
 	* @brief 获取纹理颜色
@@ -17,5 +20,6 @@ public:
 
 private:
 	Perlin noise;
+	double scale;
 };
 
