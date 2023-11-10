@@ -34,9 +34,6 @@
     <Filter Include="源文件\Material">
       <UniqueIdentifier>{cbb16c71-19a4-4ef1-8133-af30e45d8ec2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="头文件\Utils">
-      <UniqueIdentifier>{40e075eb-03d7-480b-b874-c216d9a6d51e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="头文件\Math">
       <UniqueIdentifier>{a36e8c88-1a78-4708-b146-d47aa1b36f91}</UniqueIdentifier>
     </Filter>
@@ -87,6 +84,12 @@
     <ClCompile Include="Texture\TextureChecker.cpp">
       <Filter>源文件\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="Math\Perlin.cpp">
+      <Filter>源文件\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture\TextureNoise.cpp">
+      <Filter>源文件\Texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera\Camera.h">
@@ -119,9 +122,6 @@
     <ClInclude Include="Object\Sphere.h">
       <Filter>头文件\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Utils\Utils.h">
-      <Filter>头文件\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="config.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -141,6 +141,15 @@
       <Filter>头文件\Texture</Filter>
     </ClInclude>
     <ClInclude Include="Texture\TextureChecker.h">
+      <Filter>头文件\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Random.h">
+      <Filter>头文件\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Perlin.h">
+      <Filter>头文件\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture\TextureNoise.h">
       <Filter>头文件\Texture</Filter>
     </ClInclude>
   </ItemGroup>

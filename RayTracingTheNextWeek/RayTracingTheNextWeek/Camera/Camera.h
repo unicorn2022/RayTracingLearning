@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include "../Utils/Utils.h"
 #include "../Math/Vec3.h"
 #include "../Math/Ray.h"
 

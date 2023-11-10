@@ -6,3 +6,6 @@ static const int max_depth = 50;			// 最大递归深度
 
 /* 线程设置 */
 static const int thread_cnt = 7;			// 线程数
+
+#define Ref std::shared_ptr
+#define New std::make_shared

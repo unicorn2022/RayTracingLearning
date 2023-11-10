@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Material.h"
 #include "../Texture/Texture.h"
+#include "../config.h"
 
 class Metal : public Material {
 public:

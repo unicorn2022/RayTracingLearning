@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Object.h"
+#include "../config.h"
 #include <vector>
 
 class BVHnode : public Object {

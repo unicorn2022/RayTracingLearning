@@ -1,14 +1,10 @@
 #pragma once
 #include "Texture.h"
-#include "../config.h"
+#include "../Math/Perlin.h"
 
-class TextureChecker : public Texture {
+class TextureNoise : public Texture {
 public:
-	/*
-	* @param odd 奇数纹理
-	* @param even 偶数纹理
-	*/
-	TextureChecker(Ref<Texture> odd, Ref<Texture> even) : odd(odd), even(even) {}
+	TextureNoise() {}
 
 	/*
 	* @brief 获取纹理颜色
@@ -20,7 +16,6 @@ public:
 	virtual Color Value(double u, double v, const Point3& p) const override;
 
 private:
-	Ref<Texture> odd;
-	Ref<Texture> even;
+	Perlin noise;
 };
 

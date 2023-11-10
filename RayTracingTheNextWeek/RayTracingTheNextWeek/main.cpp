@@ -4,8 +4,8 @@
 #include <ctime>
 #include <thread>
 
-#include "Utils/Utils.h"
 #include "Camera/Camera.h"
+#include "Math/Random.h"
 #include "Object/Sphere.h"
 #include "Object/SphereMoving.h"
 #include "Object/ObjectWorld.h"
@@ -14,6 +14,7 @@
 #include "Material/Metal.h"
 #include "Texture/TextureConstant.h"
 #include "Texture/TextureChecker.h"
+#include "Texture/TextureNoise.h"
 #include "config.h"
 
 /* 全局参数设置 */
@@ -43,15 +44,23 @@ namespace {
 //int BVH_node_cnt = 0;
 
 void AddObjects() {
+	Ref<TextureNoise> perlin_texture = New<TextureNoise>();
+
 	// 地面
 	world.Add(New<Sphere>(
 		Point3(0, -1000, 0), 
 		1000, 
-		New<Lambertian>(New<TextureChecker>(
-			New<TextureConstant>(Color(0.2, 0.3, 0.1)),
-			New<TextureConstant>(Color(0.9, 0.9, 0.9))
-		)))
+		New<Lambertian>(perlin_texture))
 	);	
+
+	world.Add(New<Sphere>(
+		Point3(0, 2, 0),
+		2.0,
+		New<Lambertian>(perlin_texture))
+	);
+
+	return;
+
 	// 小球
 	for(int a = -5; a < 5; a++)
 		for (int b = -5; b < 5; b++) {

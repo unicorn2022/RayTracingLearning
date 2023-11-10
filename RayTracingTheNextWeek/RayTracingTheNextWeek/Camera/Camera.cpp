@@ -1,8 +1,9 @@
 ﻿#include "Camera.h"
+#include "../Math/Random.h"
 
 Camera::Camera(Vec3 lookfrom, Vec3 lookat, Vec3 vup, double vfov, double aspect, double aperture, double focus, double t1, double t2)
 	: position(lookfrom), lens_radius(aperture / 2), time1(t1), time2(t2) {
-	double theta = vfov * std::_Pi / 180;
+	double theta = vfov * PI / 180;
 	double half_height = tan(theta / 2) * focus; // tan(θ/2) = (h/2) / 焦距
 	double half_width = aspect * half_height;
 

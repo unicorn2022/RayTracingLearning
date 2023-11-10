@@ -1,6 +1,5 @@
 #pragma once
 #include "../Math/Vec3.h"
-#include "../Utils/Utils.h"
 
 class Texture {
 public:

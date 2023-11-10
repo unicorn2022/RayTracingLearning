@@ -1,5 +1,4 @@
-ï»¿#pragma once
-
+#pragma once
 #include <random>
 #include <memory>
 #include <vector>
@@ -7,11 +6,11 @@
 
 static const double PI = std::_Pi;
 
-/* éšæœºæ•°ç”Ÿæˆå™¨ */
+/* Ëæ»úÊıÉú³ÉÆ÷ */
 class Random {
 public:
 	/*
-	* @brief è¿”å›ä¸€ä¸ª[0,1)çš„éšæœºæ•°
+	* @brief ·µ»ØÒ»¸ö[0,1)µÄËæ»úÊı
 	*/
 	static double rand01() {
 		static std::mt19937 mt;
@@ -20,7 +19,7 @@ public:
 	}
 
 	/*
-	* @brief è¿”å›å•ä½çƒé¢ä¸Šçš„éšæœºç‚¹
+	* @brief ·µ»Øµ¥Î»ÇòÃæÉÏµÄËæ»úµã
 	*/
 	static Vec3 rand_unit_sphere() {
 		double theta = rand01() * 2 * PI;
@@ -33,6 +32,3 @@ public:
 		return Vec3(x, y, z);
 	}
 };
-
-#define Ref std::shared_ptr
-#define New std::make_shared

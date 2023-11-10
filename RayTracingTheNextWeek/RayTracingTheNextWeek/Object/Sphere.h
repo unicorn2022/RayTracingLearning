@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "Object.h"
-#include "../Utils/Utils.h"
+#include "../config.h"
 #include "../Material/Material.h"
 
 

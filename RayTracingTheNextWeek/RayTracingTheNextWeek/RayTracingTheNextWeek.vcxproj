@@ -132,6 +132,7 @@
     <ClCompile Include="Material\Dielectric.cpp" />
     <ClCompile Include="Material\Lambertian.cpp" />
     <ClCompile Include="Material\Metal.cpp" />
+    <ClCompile Include="Math\Perlin.cpp" />
     <ClCompile Include="Math\Vec3.cpp" />
     <ClCompile Include="Object\AABB.cpp" />
     <ClCompile Include="Object\BVHnode.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="Object\SphereMoving.cpp" />
     <ClCompile Include="Texture\TextureChecker.cpp" />
     <ClCompile Include="Texture\TextureConstant.cpp" />
+    <ClCompile Include="Texture\TextureNoise.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera\Camera.h" />
@@ -148,6 +150,8 @@
     <ClInclude Include="Material\Lambertian.h" />
     <ClInclude Include="Material\Material.h" />
     <ClInclude Include="Material\Metal.h" />
+    <ClInclude Include="Math\Perlin.h" />
+    <ClInclude Include="Math\Random.h" />
     <ClInclude Include="Math\Ray.h" />
     <ClInclude Include="Math\Vec3.h" />
     <ClInclude Include="Object\AABB.h" />
@@ -159,7 +163,7 @@
     <ClInclude Include="Texture\Texture.h" />
     <ClInclude Include="Texture\TextureChecker.h" />
     <ClInclude Include="Texture\TextureConstant.h" />
-    <ClInclude Include="Utils\Utils.h" />
+    <ClInclude Include="Texture\TextureNoise.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

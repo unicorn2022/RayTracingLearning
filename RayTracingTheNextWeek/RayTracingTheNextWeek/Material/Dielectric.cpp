@@ -1,4 +1,6 @@
 ﻿#include "Dielectric.h"
+#include "../Math/Random.h"
+
 
 bool Dielectric::scatter(const Ray& r_in, const HitInfo& info, Color& attenuation, Ray& r_out) const {
 	double eta;				// 折射率

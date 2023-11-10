@@ -3,7 +3,7 @@
 #include "Object.h"
 #include "BVHnode.h"
 #include "../Math/Vec3.h"
-#include "../Utils/Utils.h"
+#include "../config.h"
 
 class ObjectWorld : public Object {
 public:

@@ -2,7 +2,6 @@
 
 #include "../Math/Ray.h"
 #include "../Object/Object.h"
-#include "../Utils/Utils.h"
 
 class HitInfo;
 

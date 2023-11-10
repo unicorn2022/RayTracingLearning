@@ -1,5 +1,4 @@
 ﻿#include "BVHnode.h"
-#include "../Utils/Utils.h"
 
 //extern int BVH_leaf_hit;
 
