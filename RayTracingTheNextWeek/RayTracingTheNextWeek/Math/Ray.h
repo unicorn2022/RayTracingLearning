@@ -9,12 +9,12 @@ public:
 	Ray(const Ray& r) :origin(r.origin), direction(r.direction) {}
 
 	Point3 Origin() const { return origin; }
-	Vec3 Direction() const { return direction; }
+	Vec3 Direction() const { return direction.normalize(); }
 	double Time() const { return time; }
 
 	// P(t) = origin + t * direction
 	Point3 At(double t) const {
-		return origin + t * direction;
+		return origin + t * direction.normalize();
 	}
 
 
