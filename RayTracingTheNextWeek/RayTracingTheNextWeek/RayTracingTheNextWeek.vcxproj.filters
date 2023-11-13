@@ -43,6 +43,9 @@
     <Filter Include="源文件\Texture">
       <UniqueIdentifier>{844ba9c7-89ba-4b10-bb94-d3fd5dfb981f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\3rdpatry">
+      <UniqueIdentifier>{29e93911-4b84-4934-8a4b-d9a62c5cd482}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -88,6 +91,9 @@
       <Filter>源文件\Math</Filter>
     </ClCompile>
     <ClCompile Include="Texture\TextureNoise.cpp">
+      <Filter>源文件\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture\TextureImage.cpp">
       <Filter>源文件\Texture</Filter>
     </ClCompile>
   </ItemGroup>
@@ -152,5 +158,16 @@
     <ClInclude Include="Texture\TextureNoise.h">
       <Filter>头文件\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="Texture\TextureImage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdpatry\stb_image.h">
+      <Filter>头文件\3rdpatry</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resource\earthmap.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
 </Project>

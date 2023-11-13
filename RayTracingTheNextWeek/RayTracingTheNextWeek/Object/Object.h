@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include "../config.h"
 #include "../Math/Ray.h"
 #include "../Material/Material.h"
 #include "AABB.h"
@@ -8,11 +9,11 @@ class Material;
 
 class HitInfo {
 public:
-	double t;			// ray 到碰撞点时 t 的大小
-	Point3 position;	// 碰撞点坐标
-	Vec3 normal;		// 碰撞点法线
-	std::shared_ptr<Material> material;// 碰撞点材质
-
+	double t;				// ray 到碰撞点时 t 的大小
+	Point3 position;		// 碰撞点坐标
+	Vec3 normal;			// 碰撞点法线
+	Ref<Material> material;	// 碰撞点材质
+	double u, v;			// 碰撞点 uv 坐标
 
 	// 保证 ray 的方向与法线方向相反
 	inline void set_face_normal(const Ray& r, const Vec3& outward_normal) {

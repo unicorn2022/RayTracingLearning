@@ -1,4 +1,6 @@
 ﻿#include "Sphere.h"
+#include <random>
+static const double PI = std::_Pi;
 
 bool Sphere::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const {
 	// 根据公式判断是否相交
@@ -23,6 +25,7 @@ bool Sphere::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const 
 	info.t = t;
 	info.position = r.At(t);
 	info.material = material;
+	GetUV((info.position - center) / radius, info.u, info.v); // 计算uv(球心为原点)
 
 	Vec3 outward_normal = (info.position - center) / radius; // 法线: 球心指向相交点
 	info.set_face_normal(r, outward_normal);
@@ -35,4 +38,14 @@ AABB Sphere::GetBox() const {
 		center - Vec3(radius, radius, radius),
 		center + Vec3(radius, radius, radius)
 	);
+}
+
+void Sphere::GetUV(const Point3& p, double& u, double& v) const {
+	// x = cos(theta) * cos(phi)
+	// z = cos(theta) * sin(phi)
+	// y = sin(theta)
+	double phi = atan2(p.z(), p.x()) + PI;
+	double theta = asin(p.y()) + PI / 2;
+	u = phi / (2 * PI);
+	v = theta / PI;
 }

@@ -1,4 +1,5 @@
 ﻿#include "Vec3.h"
+#include <string>
 
 Vec3 Vec3::operator-() const {
     return Vec3(-e[0], -e[1], -e[2]);
@@ -117,8 +118,19 @@ bool Vec3::refract(const Vec3& normal, double eta, Vec3& r_out) const {
     return false;
 }
 
-void Vec3::write_color(std::ostream& out) {
+void Vec3::write_color(std::ostream& out) const {
     out << static_cast<int>(255.99 * e[0]) << " "
         << static_cast<int>(255.99 * e[1]) << " "
         << static_cast<int>(255.99 * e[2]) << "\n";
+}
+
+std::string Vec3::Print() const {
+    std::string res = "(";
+    res += std::to_string(e[0]);
+    res += ", ";
+    res += std::to_string(e[1]);
+    res += ", ";
+    res += std::to_string(e[2]);
+    res += ")";
+    return res;
 }

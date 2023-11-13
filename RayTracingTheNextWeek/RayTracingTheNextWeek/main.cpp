@@ -15,6 +15,7 @@
 #include "Texture/TextureConstant.h"
 #include "Texture/TextureChecker.h"
 #include "Texture/TextureNoise.h"
+#include "Texture/TextureImage.h"
 #include "config.h"
 
 /* 全局参数设置 */
@@ -44,70 +45,19 @@ namespace {
 //int BVH_node_cnt = 0;
 
 void AddObjects() {
-	Ref<TextureNoise> perlin_texture = New<TextureNoise>(6.3);
-
 	// 地面
 	world.Add(New<Sphere>(
 		Point3(0, -1000, 0), 
-		1000, 
-		New<Lambertian>(perlin_texture))
+		999.2, 
+		New<Metal>(New<TextureConstant>(Color(0.8, 0.2, 0.0)), 0.0))
 	);	
-
+	// 物体
 	world.Add(New<Sphere>(
-		Point3(0, 2, 0),
-		2.0,
-		New<Lambertian>(perlin_texture))
+		Point3(0, 0, 0),
+		0.8,
+		New<Lambertian>(New<TextureImage>("resource/earthmap.jpg")))
 	);
-
 	return;
-
-	// 小球
-	for(int a = -5; a < 5; a++)
-		for (int b = -5; b < 5; b++) {
-			double choose_material = Random::rand01();
-			Point3 center(a + 0.9 * Random::rand01(), 0.2, b + 0.9 * Random::rand01());
-			Color color(Random::rand01(), Random::rand01(), Random::rand01());
-
-			if (choose_material < 0.55) {
-				world.Add(New<SphereMoving>(
-					center, center + Vec3(0, 0.5 * Random::rand01(), 0),
-					0.0, 1.0,
-					0.2,
-					New<Lambertian>(New<TextureConstant>(color)))
-				);
-			}
-			else if (choose_material < 0.85) {
-				world.Add(New<Sphere>(
-					center,
-					0.2,
-					New<Metal>(New<TextureConstant>(color)))
-				);
-			}
-			else {
-				world.Add(New<Sphere>(
-					center, 
-					0.2, 
-					New<Dielectric>(1.5)));
-			}
-		}
-	// 大球
-	world.Add(New<Sphere>(
-		Point3(0, 1, 0),
-		1.0,
-		New<Dielectric>(1.5))
-	);
-	world.Add(New<Sphere>(
-		Point3(-4, 1, 0),
-		1.0,
-		New<Lambertian>(New<TextureConstant>(Color(0.4, 0.2, 0.1))))
-	);
-	world.Add(New<Sphere>(
-		Point3(4, 1, 0),
-		1.0,
-		New<Metal>(New<TextureConstant>(Color(0.7, 0.6, 0.5)), 0.0))
-	);
-
-	world.Build();
 }
 
 void Render(int L, int R, bool single) {

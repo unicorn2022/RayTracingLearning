@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,9 +142,11 @@
     <ClCompile Include="Object\SphereMoving.cpp" />
     <ClCompile Include="Texture\TextureChecker.cpp" />
     <ClCompile Include="Texture\TextureConstant.cpp" />
+    <ClCompile Include="Texture\TextureImage.cpp" />
     <ClCompile Include="Texture\TextureNoise.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="3rdpatry\stb_image.h" />
     <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="Material\Dielectric.h" />
@@ -163,7 +166,11 @@
     <ClInclude Include="Texture\Texture.h" />
     <ClInclude Include="Texture\TextureChecker.h" />
     <ClInclude Include="Texture\TextureConstant.h" />
+    <ClInclude Include="Texture\TextureImage.h" />
     <ClInclude Include="Texture\TextureNoise.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resource\earthmap.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

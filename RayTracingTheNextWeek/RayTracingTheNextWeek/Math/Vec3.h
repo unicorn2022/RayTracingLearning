@@ -60,7 +60,8 @@ public:
 	bool refract(const Vec3& normal, double eta, Vec3& r_out) const;
 
 	// 输出相关
-	void write_color(std::ostream& out);
+	void write_color(std::ostream& out) const;
+	std::string Print() const;
 
 private:
 	double e[3];
