@@ -31,7 +31,7 @@ public:
 	* @param depth 递归深度
 	* @return 当前得到的颜色
 	*/
-	Color GetColor(const Ray& r, int depth = 0);
+	Color GetColor(const Ray& r, int& depth);
 
 	/*
 	* @brief 获取当前对象的包围盒

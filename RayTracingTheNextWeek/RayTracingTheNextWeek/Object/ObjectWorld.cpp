@@ -40,7 +40,7 @@ bool ObjectWorld::hit(const Ray& r, double t_min, double t_max, HitInfo& info) c
 	return hit_anything;
 }
 
-Color ObjectWorld::GetColor(const Ray& r, int depth) {
+Color ObjectWorld::GetColor(const Ray& r, int& depth) {
 	HitInfo record;
 
 	// 如果碰撞到了, 则根据材质计算反射光线
@@ -49,7 +49,7 @@ Color ObjectWorld::GetColor(const Ray& r, int depth) {
 		Color attenuation;
 		Color emit = record.material->emitted(record.u, record.v, record.position);
 		if (depth < max_depth && record.material->scatter(r, record, attenuation, scattered))
-			return emit + attenuation * GetColor(scattered, depth + 1);
+			return emit + attenuation * GetColor(scattered, ++depth);
 		else
 			return emit;
 	}

@@ -56,7 +56,8 @@ void Render(int L, int R, bool single) {
 				Ray r = main_camera.GetRay(u, v);
 
 				// 计算光线得到的颜色
-				data[i][j] += world.GetColor(r);
+				int depth = 0;
+				data[i][j] += world.GetColor(r, depth);
 			}
 			data[i][j] /= samples_per_pixel;
 
