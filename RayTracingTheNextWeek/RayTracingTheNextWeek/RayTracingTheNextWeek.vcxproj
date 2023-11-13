@@ -137,6 +137,7 @@
     <ClCompile Include="Math\Perlin.cpp" />
     <ClCompile Include="Math\Vec3.cpp" />
     <ClCompile Include="Object\AABB.cpp" />
+    <ClCompile Include="Object\Box.cpp" />
     <ClCompile Include="Object\BVHnode.cpp" />
     <ClCompile Include="Object\FlipNormal.cpp" />
     <ClCompile Include="Object\ObjectWorld.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Math\Ray.h" />
     <ClInclude Include="Math\Vec3.h" />
     <ClInclude Include="Object\AABB.h" />
+    <ClInclude Include="Object\Box.h" />
     <ClInclude Include="Object\BVHnode.h" />
     <ClInclude Include="Object\FlipNormal.h" />
     <ClInclude Include="Object\Object.h" />
