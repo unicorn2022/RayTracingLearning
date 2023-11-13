@@ -14,13 +14,6 @@ public:
 	Vec3 normal;			// 碰撞点法线
 	Ref<Material> material;	// 碰撞点材质
 	double u, v;			// 碰撞点 uv 坐标
-
-	// 保证 ray 的方向与法线方向相反
-	inline void set_face_normal(const Ray& r, const Vec3& outward_normal) {
-		// ray 的方向与 outward_normal 的方向相反, 需要反转 normal
-		bool front_face = r.Direction().dot(outward_normal) < 0.0;
-		normal = front_face ? outward_normal : -outward_normal;
-	}
 };
 
 class Object {

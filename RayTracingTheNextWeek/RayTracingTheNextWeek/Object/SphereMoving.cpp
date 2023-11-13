@@ -23,10 +23,8 @@ bool SphereMoving::hit(const Ray& r, double t_min, double t_max, HitInfo& info) 
 
 	info.t = t;
 	info.position = r.At(t);
+	info.normal = (info.position - center) / radius; // 法线: 球心指向相交点
 	info.material = material;
-
-	Vec3 outward_normal = (info.position - center) / radius; // 法线: 球心指向相交点
-	info.set_face_normal(r, outward_normal);
 
 	return true;
 }

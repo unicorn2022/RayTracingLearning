@@ -10,7 +10,7 @@ bool RectXZ::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const 
 
     info.t = t;
     info.position = p;
-    info.set_face_normal(r, Vec3(0, 1, 0));
+    info.normal = Vec3(0, 1, 0);
     info.material = material;
     info.u = (p.x() - x1) / (x2 - x1);
     info.v = (p.z() - z1) / (z2 - z1);

@@ -24,11 +24,9 @@ bool Sphere::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const 
 
 	info.t = t;
 	info.position = r.At(t);
+	info.normal = (info.position - center) / radius; // 法线: 球心指向相交点
 	info.material = material;
 	GetUV((info.position - center) / radius, info.u, info.v); // 计算uv(球心为原点)
-
-	Vec3 outward_normal = (info.position - center) / radius; // 法线: 球心指向相交点
-	info.set_face_normal(r, outward_normal);
 
 	return true;
 }

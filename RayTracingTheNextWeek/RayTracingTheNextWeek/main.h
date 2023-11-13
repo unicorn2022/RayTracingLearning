@@ -7,6 +7,7 @@
 
 #include "Camera/Camera.h"
 #include "Math/Random.h"
+#include "Object/FlipNormal.h"
 #include "Object/Sphere.h"
 #include "Object/SphereMoving.h"
 #include "Object/ObjectWorld.h"

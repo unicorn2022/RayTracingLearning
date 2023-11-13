@@ -53,17 +53,17 @@ Color ObjectWorld::GetColor(const Ray& r, int depth) {
 		else
 			return emit;
 	}
-	// 如果不相交, 则返回黑色
-	else {
-		return Color(1.0f);
-	}
-	/*
 	// 如果不相交, 则根据方向插值背景颜色
 	else {
 		Vec3 direction_unit = r.Direction().normalize();
 		double t = 0.5 * (direction_unit.y() + 1);
 		return (1 - t) * Color(1.0f) + t * background;
-	}*/
+	}
+	//// 如果不相交, 则返回黑色
+	//else {
+	//	return Color(1.0f);
+	//}
+	
 }
 
 void ObjectWorld::Build() {

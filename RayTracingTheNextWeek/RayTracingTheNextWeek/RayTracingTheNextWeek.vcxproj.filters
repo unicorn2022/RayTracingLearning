@@ -108,6 +108,9 @@
     <ClCompile Include="Object\RectYZ.cpp">
       <Filter>源文件\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Object\FlipNormal.cpp">
+      <Filter>源文件\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera\Camera.h">
@@ -190,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="main.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\FlipNormal.h">
+      <Filter>头文件\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
