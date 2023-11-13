@@ -13,7 +13,7 @@ bool Sphere::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const 
 	auto c = oc.dot(oc) - radius * radius;
 	auto discrimination = b * b - 4 * a * c;
 
-	if (discrimination < 0) return false;
+	if (discrimination <= 0) return false;
 
 	auto sqrtd = sqrt(discrimination);
 	auto t = (-b - sqrtd) / (2 * a);

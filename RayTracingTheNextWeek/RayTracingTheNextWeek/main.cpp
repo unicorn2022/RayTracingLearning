@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <ctime>
 #include <thread>
+#include <algorithm>
 
 #include "Camera/Camera.h"
 #include "Math/Random.h"
@@ -121,14 +122,8 @@ int main() {
 	t = clock();
 	std::cout << "P3\n" << Image_Width << " " << Image_Height << "\n255\n";
 	for (int j = Image_Height - 1; j >= 0; j--)
-		for (int i = 0; i < Image_Width; i++) {
-			Color now = data[i][j];
-			// 抗锯齿
-			if (i + 1 < Image_Width && j + 1 < Image_Height) {
-				now = (data[i][j] + data[i + 1][j] + data[i][j + 1] + data[i + 1][j + 1]) / 4;
-			}
-			now.write_color(std::cout);
-		}
+		for (int i = 0; i < Image_Width; i++) 
+			data[i][j].write_color(std::cout);
 	std::cerr << "图片输出完成, 耗时 " << (clock() - t) / 1000.0f << "s\n";
 
 	fclose(stdout);
