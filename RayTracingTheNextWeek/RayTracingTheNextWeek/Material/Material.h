@@ -17,4 +17,13 @@ public:
 	*/
 	virtual bool scatter(const Ray& r_in, const HitInfo& info, Color& attenuation, Ray& r_out) const = 0;
 
+	/*
+	* @brief 自发光
+	* @param u uv坐标
+	* @param v uv坐标
+	* @param p 碰撞点
+	*/
+	virtual Color emitted(double u, double v, const Point3& p) const {
+		return Color(0, 0, 0);
+	}
 };

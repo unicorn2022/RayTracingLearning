@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Material\Emit.cpp" />
     <ClCompile Include="Material\Dielectric.cpp" />
     <ClCompile Include="Material\Lambertian.cpp" />
     <ClCompile Include="Material\Metal.cpp" />
@@ -138,6 +139,9 @@
     <ClCompile Include="Object\AABB.cpp" />
     <ClCompile Include="Object\BVHnode.cpp" />
     <ClCompile Include="Object\ObjectWorld.cpp" />
+    <ClCompile Include="Object\RectXY.cpp" />
+    <ClCompile Include="Object\RectXZ.cpp" />
+    <ClCompile Include="Object\RectYZ.cpp" />
     <ClCompile Include="Object\Sphere.cpp" />
     <ClCompile Include="Object\SphereMoving.cpp" />
     <ClCompile Include="Texture\TextureChecker.cpp" />
@@ -149,6 +153,8 @@
     <ClInclude Include="3rdpatry\stb_image.h" />
     <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="config.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="Material\Emit.h" />
     <ClInclude Include="Material\Dielectric.h" />
     <ClInclude Include="Material\Lambertian.h" />
     <ClInclude Include="Material\Material.h" />
@@ -161,6 +167,9 @@
     <ClInclude Include="Object\BVHnode.h" />
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Object\ObjectWorld.h" />
+    <ClInclude Include="Object\RectXY.h" />
+    <ClInclude Include="Object\RectXZ.h" />
+    <ClInclude Include="Object\RectYZ.h" />
     <ClInclude Include="Object\Sphere.h" />
     <ClInclude Include="Object\SphereMoving.h" />
     <ClInclude Include="Texture\Texture.h" />

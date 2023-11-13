@@ -1,23 +1,5 @@
 ﻿#pragma warning(disable:4996)
-#include <iostream>
-#include <iomanip>
-#include <ctime>
-#include <thread>
-#include <algorithm>
-
-#include "Camera/Camera.h"
-#include "Math/Random.h"
-#include "Object/Sphere.h"
-#include "Object/SphereMoving.h"
-#include "Object/ObjectWorld.h"
-#include "Material/Lambertian.h"
-#include "Material/Dielectric.h"
-#include "Material/Metal.h"
-#include "Texture/TextureConstant.h"
-#include "Texture/TextureChecker.h"
-#include "Texture/TextureNoise.h"
-#include "Texture/TextureImage.h"
-#include "config.h"
+#include "main.h"
 
 /* 全局参数设置 */
 namespace {
@@ -33,12 +15,13 @@ namespace {
 	ObjectWorld world(background);	// 世界中的物体
 
 	/* 相机设置 */
-	Vec3 from(13, 2, 3);
-	Vec3 at(0, 0, 0);
+	Vec3 from(278, 278, -800);
+	Vec3 at(278, 278, 0);
 	double dist_to_focus = 10;
 	double aperture = 0.0;
+	double vfov = 40.0;
 	double time_start = 0, time_end = 1.0;
-	Camera main_camera(from, at, Vec3(0, 1, 0), 20, aspect, aperture, 0.7 * dist_to_focus, time_start, time_end);	// 主相机
+	Camera main_camera(from, at, Vec3(0, 1, 0), vfov, aspect, aperture, 0.7 * dist_to_focus, time_start, time_end);	// 主相机
 }
 
 //int AABB_hit = 0;
@@ -46,18 +29,17 @@ namespace {
 //int BVH_node_cnt = 0;
 
 void AddObjects() {
-	// 地面
-	world.Add(New<Sphere>(
-		Point3(0, -1000, 0), 
-		999.2, 
-		New<Metal>(New<TextureConstant>(Color(0.8, 0.2, 0.0)), 0.0))
-	);	
-	// 物体
-	world.Add(New<Sphere>(
-		Point3(0, 0, 0),
-		0.8,
-		New<Lambertian>(New<TextureImage>("resource/earthmap.jpg")))
-	);
+	Ref<Material> red = New<Lambertian>(New<TextureConstant>(Color(0.65, 0.05, 0.05)));
+	Ref<Material> white = New<Lambertian>(New<TextureConstant>(Color(0.73, 0.73, 0.73)));
+	Ref<Material> green = New<Lambertian>(New<TextureConstant>(Color(0.12, 0.45, 0.15)));
+	Ref<Material> light = New<Emit>(New<TextureConstant>(Color(20, 20, 20)));
+
+	world.Add(New<RectXZ>(213, 343, 227, 332, 554, light));
+	world.Add(New<RectYZ>(0, 555, 0, 555, 0, red));		// 右红墙
+	world.Add(New<RectYZ>(0, 555, 0, 555, 555, green));	// 左绿墙
+	world.Add(New<RectXZ>(0, 555, 0, 555, 0, white));	// 下白墙
+	world.Add(New<RectXZ>(0, 555, 0, 555, 555, white));	// 上白墙
+	world.Add(New<RectXY>(0, 555, 0, 555, 555, white));	// 后白墙
 	return;
 }
 

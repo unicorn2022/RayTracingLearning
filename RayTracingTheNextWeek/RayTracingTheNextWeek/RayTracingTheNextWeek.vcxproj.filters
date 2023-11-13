@@ -96,6 +96,18 @@
     <ClCompile Include="Texture\TextureImage.cpp">
       <Filter>源文件\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="Material\Emit.cpp">
+      <Filter>源文件\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\RectXY.cpp">
+      <Filter>源文件\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\RectXZ.cpp">
+      <Filter>源文件\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\RectYZ.cpp">
+      <Filter>源文件\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera\Camera.h">
@@ -158,11 +170,26 @@
     <ClInclude Include="Texture\TextureNoise.h">
       <Filter>头文件\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="Texture\TextureImage.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="3rdpatry\stb_image.h">
       <Filter>头文件\3rdpatry</Filter>
+    </ClInclude>
+    <ClInclude Include="Material\Emit.h">
+      <Filter>头文件\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\RectXY.h">
+      <Filter>头文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture\TextureImage.h">
+      <Filter>头文件\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\RectXZ.h">
+      <Filter>头文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\RectYZ.h">
+      <Filter>头文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
