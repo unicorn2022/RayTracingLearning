@@ -30,12 +30,12 @@ namespace {
 
 void AddObjects() {
 	Ref<Material> red = New<Lambertian>(New<TextureConstant>(Color(0.65, 0.05, 0.05)));
-	Ref<Material> white = New<Lambertian>(New<TextureConstant>(Color(0.73, 0.73, 0.73)));
 	Ref<Material> green = New<Lambertian>(New<TextureConstant>(Color(0.12, 0.45, 0.15)));
-	Ref<Material> light = New<Emit>(New<TextureConstant>(Color(20, 20, 20)));
+	Ref<Material> white = New<Lambertian>(New<TextureConstant>(Color(0.73, 0.73, 0.73)));
+	Ref<Material> light = New<Emit>(New<TextureConstant>(Color(1, 1, 1)));
 
-	world.Add(New<FlipNormal>(New<RectYZ>(0, 555, 0, 555, 555, green)));	// 左绿墙
-	world.Add(New<RectYZ>(0, 555, 0, 555, 0, red));		// 右红墙
+	world.Add(New<RectYZ>(0, 555, 0, 555, 555, green));	// 左绿墙
+	world.Add(New<FlipNormal>(New<RectYZ>(0, 555, 0, 555, 0, red)));		// 右红墙
 	world.Add(New<RectXZ>(213, 343, 227, 332, 554, light));
 	world.Add(New<FlipNormal>(New<RectXZ>(0, 555, 0, 555, 555, white)));	// 上白墙
 	world.Add(New<RectXZ>(0, 555, 0, 555, 0, white));	// 下白墙
@@ -54,7 +54,8 @@ void Render(int L, int R, bool single) {
 
 				// 获取当前像素对应的光线
 				Ray r = main_camera.GetRay(u, v);
-
+				//if (u >= 0.24 && u <= 0.26 && v >= 0.49 && v <= 0.51)
+				//	int aaa = 1;
 				// 计算光线得到的颜色
 				int depth = 0;
 				data[i][j] += world.GetColor(r, depth);

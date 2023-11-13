@@ -44,7 +44,8 @@ Color ObjectWorld::GetColor(const Ray& r, int& depth) {
 	HitInfo record;
 
 	// 如果碰撞到了, 则根据材质计算反射光线
-	if (this->hit(r, 0, INFINITY, record)) {
+	// 注意 t_min 需要设置一个很小的值, 否则会出现光线重复与同一个物体相交的情况
+	if (this->hit(r, 0.01, INFINITY, record)) {
 		Ray scattered;
 		Color attenuation;
 		Color emit = record.material->emitted(record.u, record.v, record.position);
