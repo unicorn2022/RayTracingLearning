@@ -18,6 +18,7 @@
 #include "Object/Transform/FlipNormal.h"
 #include "Object/Transform/Translate.h"
 #include "Object/Transform/RotateY.h"
+#include "Object/Transform/ConstantMedium.h"
 
 #include "Material/Lambertian.h"
 #include "Material/Dielectric.h"

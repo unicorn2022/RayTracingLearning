@@ -44,8 +44,10 @@ void AddObjects() {
 
 	Ref<Box> box1 = New<Box>(Vec3(0, 0, 0), Vec3(165, 165, 165), white);
 	Ref<Box> box2 = New<Box>(Vec3(0, 0, 0), Vec3(165, 330, 165), white);
-	world.Add(New<Translate>(Vec3(130, 0, 65), New<RotateY>(-18, box1)));	// 盒子1
-	world.Add(New<Translate>(Vec3(265, 0, 295), New<RotateY>(15, box2)));	// 盒子2
+	Ref<Object> box_1 = New<Translate>(Vec3(130, 0, 65), New<RotateY>(-18, box1));
+	Ref<Object> box_2 = New<Translate>(Vec3(265, 0, 295), New<RotateY>(15, box2));
+	world.Add(New<ConstantMedium>(box_2, 0.006, New<TextureConstant>(Color(0.8, 0.58, 0))));	// 盒子1
+	world.Add(New<ConstantMedium>(box_1, 0.008, New<TextureConstant>(Color(0.9, 0.2, 0.72))));	// 盒子2
 	return;
 }
 

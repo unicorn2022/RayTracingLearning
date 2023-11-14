@@ -126,6 +126,12 @@
     <ClCompile Include="Object\Transform\RotateY.cpp">
       <Filter>源文件\Object\Transform</Filter>
     </ClCompile>
+    <ClCompile Include="Material\Isotropic.cpp">
+      <Filter>源文件\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Transform\ConstantMedium.cpp">
+      <Filter>源文件\Object\Transform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera\Camera.h">
@@ -219,6 +225,12 @@
       <Filter>头文件\Object\Transform</Filter>
     </ClInclude>
     <ClInclude Include="Object\Transform\RotateY.h">
+      <Filter>头文件\Object\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Material\Isotropic.h">
+      <Filter>头文件\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Transform\ConstantMedium.h">
       <Filter>头文件\Object\Transform</Filter>
     </ClInclude>
   </ItemGroup>
