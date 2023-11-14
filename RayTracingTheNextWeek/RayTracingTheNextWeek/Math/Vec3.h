@@ -59,6 +59,14 @@ public:
 	*/
 	bool refract(const Vec3& normal, double eta, Vec3& r_out) const;
 
+	/*
+	* @brief 向量绕Y轴旋转 theta
+	* @param sin_theta	正弦值
+	* @param cos_theta	余弦值
+	* @return 旋转后的向量
+	*/
+	Vec3 rotateY(double sin_theta, double cos_theta) const;
+
 	// 输出相关
 	void write_color(std::ostream& out) const;
 	std::string Print() const;

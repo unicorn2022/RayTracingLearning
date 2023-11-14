@@ -1,30 +1,30 @@
-#pragma once
+ï»¿#pragma once
 #include "Object.h"
 class RectYZ : public Object {
 public:
 	/*
-	* @param y1 y Öá×îĞ¡Öµ
-	* @param y2 y Öá×î´óÖµ
-	* @param z1 z Öá×îĞ¡Öµ
-	* @param z2 z Öá×î´óÖµ
-	* @param k	x ÖáÖµ
-	* @param material ²ÄÖÊ
+	* @param y1 y è½´æœ€å°å€¼
+	* @param y2 y è½´æœ€å¤§å€¼
+	* @param z1 z è½´æœ€å°å€¼
+	* @param z2 z è½´æœ€å¤§å€¼
+	* @param k	x è½´å€¼
+	* @param material æè´¨
 	*/
 	RectYZ(double y1, double y2, double z1, double z2, double k, Ref<Material> material)
 		: z1(z1), z2(z2), y1(y1), y2(y2), k(k), material(material) {}
 
 	/*
-	* @brief ÅĞ¶Ï¹âÏßÊÇ·ñÓëµ±Ç°¶ÔÏóÅö×²
-	* @param r ¹âÏß
-	* @param t_min ¹âÏßµÄ×îĞ¡ t Öµ
-	* @param t_max ¹âÏßµÄ×î´ó t Öµ
-	* @param info Åö×²µãĞÅÏ¢
-	* @return ÊÇ·ñÅö×²
+	* @brief åˆ¤æ–­å…‰çº¿æ˜¯å¦ä¸å½“å‰å¯¹è±¡ç¢°æ’
+	* @param r å…‰çº¿
+	* @param t_min å…‰çº¿çš„æœ€å° t å€¼
+	* @param t_max å…‰çº¿çš„æœ€å¤§ t å€¼
+	* @param info ç¢°æ’ç‚¹ä¿¡æ¯
+	* @return æ˜¯å¦ç¢°æ’
 	*/
 	virtual bool hit(const Ray& r, double t_min, double t_max, HitInfo& info) const override;
 
 	/*
-	* @brief »ñÈ¡µ±Ç°¶ÔÏóµÄ°üÎ§ºĞ
+	* @brief è·å–å½“å‰å¯¹è±¡çš„åŒ…å›´ç›’
 	*/
 	virtual AABB GetBox() const override;
 

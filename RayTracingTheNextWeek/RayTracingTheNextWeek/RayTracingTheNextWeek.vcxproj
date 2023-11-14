@@ -139,13 +139,15 @@
     <ClCompile Include="Object\AABB.cpp" />
     <ClCompile Include="Object\Box.cpp" />
     <ClCompile Include="Object\BVHnode.cpp" />
-    <ClCompile Include="Object\FlipNormal.cpp" />
     <ClCompile Include="Object\ObjectWorld.cpp" />
     <ClCompile Include="Object\RectXY.cpp" />
     <ClCompile Include="Object\RectXZ.cpp" />
     <ClCompile Include="Object\RectYZ.cpp" />
     <ClCompile Include="Object\Sphere.cpp" />
     <ClCompile Include="Object\SphereMoving.cpp" />
+    <ClCompile Include="Object\Transform\FlipNormal.cpp" />
+    <ClCompile Include="Object\Transform\RotateY.cpp" />
+    <ClCompile Include="Object\Transform\Translate.cpp" />
     <ClCompile Include="Texture\TextureChecker.cpp" />
     <ClCompile Include="Texture\TextureConstant.cpp" />
     <ClCompile Include="Texture\TextureImage.cpp" />
@@ -168,7 +170,6 @@
     <ClInclude Include="Object\AABB.h" />
     <ClInclude Include="Object\Box.h" />
     <ClInclude Include="Object\BVHnode.h" />
-    <ClInclude Include="Object\FlipNormal.h" />
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Object\ObjectWorld.h" />
     <ClInclude Include="Object\RectXY.h" />
@@ -176,6 +177,9 @@
     <ClInclude Include="Object\RectYZ.h" />
     <ClInclude Include="Object\Sphere.h" />
     <ClInclude Include="Object\SphereMoving.h" />
+    <ClInclude Include="Object\Transform\FlipNormal.h" />
+    <ClInclude Include="Object\Transform\RotateY.h" />
+    <ClInclude Include="Object\Transform\Translate.h" />
     <ClInclude Include="Texture\Texture.h" />
     <ClInclude Include="Texture\TextureChecker.h" />
     <ClInclude Include="Texture\TextureConstant.h" />

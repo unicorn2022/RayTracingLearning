@@ -118,6 +118,13 @@ bool Vec3::refract(const Vec3& normal, double eta, Vec3& r_out) const {
     return false;
 }
 
+Vec3 Vec3::rotateY(double sin_theta, double cos_theta) const {
+    Vec3 v = *this;
+    v[0] = cos_theta * e[0] + sin_theta * e[2];
+    v[2] = -sin_theta * e[0] + cos_theta * e[2];
+    return v;
+}
+
 void Vec3::write_color(std::ostream& out) const {
     out << static_cast<int>(255.99 * e[0]) << " "
         << static_cast<int>(255.99 * e[1]) << " "

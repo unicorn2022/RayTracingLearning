@@ -46,6 +46,12 @@
     <Filter Include="头文件\3rdpatry">
       <UniqueIdentifier>{29e93911-4b84-4934-8a4b-d9a62c5cd482}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Object\Transform">
+      <UniqueIdentifier>{84050c4c-e8c7-4cde-bb2a-1ca3d2042e6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Object\Transform">
+      <UniqueIdentifier>{a2281fec-5e0f-42d2-9c8e-b359efc37e81}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -108,11 +114,17 @@
     <ClCompile Include="Object\RectYZ.cpp">
       <Filter>源文件\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Object\FlipNormal.cpp">
-      <Filter>源文件\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Object\Box.cpp">
       <Filter>源文件\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Transform\FlipNormal.cpp">
+      <Filter>源文件\Object\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Transform\Translate.cpp">
+      <Filter>源文件\Object\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Transform\RotateY.cpp">
+      <Filter>源文件\Object\Transform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,11 +209,17 @@
     <ClInclude Include="main.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Object\FlipNormal.h">
-      <Filter>头文件\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Object\Box.h">
       <Filter>头文件\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Transform\FlipNormal.h">
+      <Filter>头文件\Object\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Transform\Translate.h">
+      <Filter>头文件\Object\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Transform\RotateY.h">
+      <Filter>头文件\Object\Transform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -30,16 +30,22 @@ namespace {
 
 void AddObjects() {
 	Ref<Material> red = New<Lambertian>(New<TextureConstant>(Color(0.65, 0.05, 0.05)));
+	Ref<Material> blue = New<Lambertian>(New<TextureConstant>(Color(0.05, 0.05, 0.73)));
 	Ref<Material> green = New<Lambertian>(New<TextureConstant>(Color(0.12, 0.45, 0.15)));
-	Ref<Material> white = New<Lambertian>(New<TextureConstant>(Color(0.73, 0.73, 0.73)));
+	Ref<Material> white = New<Lambertian>(New<TextureConstant>(Color(0.88, 0.88, 0.88)));
 	Ref<Material> light = New<Emit>(New<TextureConstant>(Color(1, 1, 1)));
 
-	world.Add(New<RectYZ>(0, 555, 0, 555, 555, green));	// 左绿墙
-	world.Add(New<FlipNormal>(New<RectYZ>(0, 555, 0, 555, 0, red)));		// 右红墙
-	world.Add(New<RectXZ>(213, 343, 227, 332, 554, light));
-	world.Add(New<FlipNormal>(New<RectXZ>(0, 555, 0, 555, 555, white)));	// 上白墙
-	world.Add(New<RectXZ>(0, 555, 0, 555, 0, white));	// 下白墙
-	world.Add(New<FlipNormal>(New<RectXY>(0, 555, 0, 555, 555, white)));	// 后白墙
+	world.Add(New<RectXZ>(213, 343, 227, 332, 554, light));				// 顶部光源
+	world.Add(New<RectYZ>(0, 555, 0, 555, 555, green));					// 左绿墙
+	world.Add(New<FlipNormal>(New<RectYZ>(0, 555, 0, 555, 0, red)));	// 右红墙
+	world.Add(New<FlipNormal>(New<RectXZ>(0, 555, 0, 555, 555, white)));// 上白墙
+	world.Add(New<RectXZ>(0, 555, 0, 555, 0, white));					// 下白墙
+	world.Add(New<FlipNormal>(New<RectXY>(0, 555, 0, 555, 555, blue)));	// 后蓝墙
+
+	Ref<Box> box1 = New<Box>(Vec3(0, 0, 0), Vec3(165, 165, 165), white);
+	Ref<Box> box2 = New<Box>(Vec3(0, 0, 0), Vec3(165, 330, 165), white);
+	world.Add(New<Translate>(Vec3(130, 0, 65), New<RotateY>(-18, box1)));	// 盒子1
+	world.Add(New<Translate>(Vec3(265, 0, 295), New<RotateY>(15, box2)));	// 盒子2
 	return;
 }
 

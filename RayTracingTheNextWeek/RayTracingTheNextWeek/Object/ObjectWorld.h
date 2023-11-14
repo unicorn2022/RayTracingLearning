@@ -10,7 +10,7 @@ public:
 	/*
 	* @param background: 背景颜色
 	*/
-	ObjectWorld(Color background) : background(background) {}
+	ObjectWorld(Color background = Color()) : background(background) {}
 
 	void Clear() { objects.clear(); }
 	void Add(Ref<Object> object) { objects.push_back(object); }

@@ -1,14 +1,8 @@
 ﻿#pragma once
-#include "ObjectWorld.h"
-#include "../Material/Material.h"
-class Box : public Object {
+#include "../Object.h"
+class RotateY : public Object {
 public:
-	/*
-	* @param point_min 左下顶点
-	* @param point_max 右上顶点
-	* @param material 材质
-	*/
-	Box(const Vec3& point_min, const Vec3& point_max, Ref<Material> material);
+	RotateY(double angle, Ref<Object> object);
 
 	/*
 	* @brief 判断光线是否与当前对象碰撞
@@ -25,7 +19,9 @@ public:
 	*/
 	virtual AABB GetBox() const override;
 private:
-	Vec3 point_min, point_max;
-	Ref<ObjectWorld> sides;
+
+	Ref<Object> object;
+	double sin_theta, cos_theta;
+	AABB box;
 };
 
