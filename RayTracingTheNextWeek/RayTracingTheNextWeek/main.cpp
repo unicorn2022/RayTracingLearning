@@ -143,8 +143,6 @@ void Render(int L, int R, bool single, int number) {
 }
 
 int main() {
-	freopen("../output.ppm", "w", stdout);
-	
 	auto t = clock();
 	Final_Scene();
 
@@ -188,6 +186,8 @@ int main() {
 
 	// 输出图片
 	t = clock();
+
+	freopen("../output.ppm", "w", stdout);
 	std::cout << "P3\n" << Image_Width << " " << Image_Height << "\n255\n";
 	for (int j = Image_Height - 1; j >= 0; j--)
 		for (int i = 0; i < Image_Width; i++) 
