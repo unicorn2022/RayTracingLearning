@@ -1,4 +1,6 @@
 ﻿#include "SphereMoving.h"
+#include <random>
+static const double PI = std::_Pi;
 
 bool SphereMoving::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const {
 	// 根据公式判断是否相交
@@ -25,6 +27,7 @@ bool SphereMoving::hit(const Ray& r, double t_min, double t_max, HitInfo& info) 
 	info.position = r.At(t);
 	info.normal = (info.position - center) / radius; // 法线: 球心指向相交点
 	info.material = material;
+	GetUV((info.position - center) / radius, info.u, info.v); // 计算uv(球心为原点)
 
 	return true;
 }
@@ -43,4 +46,14 @@ AABB SphereMoving::GetBox() const {
 
 Point3 SphereMoving::GetCenter(double time) const {
     return center1 + ((time - time1) / (time2 - time1)) * (center2 - center1);
+}
+
+void SphereMoving::GetUV(const Point3& p, double& u, double& v) const {
+	// x = cos(theta) * cos(phi)
+	// z = cos(theta) * sin(phi)
+	// y = sin(theta)
+	double phi = atan2(p.z(), p.x()) + PI;
+	double theta = asin(p.y()) + PI / 2;
+	u = phi / (2 * PI);
+	v = theta / PI;
 }

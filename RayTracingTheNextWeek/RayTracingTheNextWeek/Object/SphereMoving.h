@@ -38,6 +38,14 @@ public:
 	Point3 GetCenter(double time) const;
 
 private:
+	/*
+	* @brief 获取碰撞点的 uv 坐标
+	* @param p 碰撞点的局部坐标(归一化)
+	* @param u uv 坐标
+	* @param v uv 坐标
+	*/
+	void GetUV(const Point3& p, double& u, double& v) const;
+
 	Point3 center1;
 	Point3 center2;
 	double time1;

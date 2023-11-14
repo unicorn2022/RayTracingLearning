@@ -9,7 +9,7 @@
 
 bool ObjectWorld::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const {
 	//auto t = clock();
-	//return root->hit(r, t_min, t_max, info);
+	if(root != nullptr) return root->hit(r, t_min, t_max, info);
 	
 	//std::cerr << "AABB_hit = " << AABB_hit << std::endl;
 	//std::cerr << "BVH_leaf_hit = " << BVH_leaf_hit << std::endl;

@@ -3,6 +3,7 @@
 class Dielectric : public Material {
 public:
 	/*
+	* @brief 透明材质
 	* @param refractive_index 折射率
 	*/
 	Dielectric(double refractive_index) : refractive_index(refractive_index) {}
