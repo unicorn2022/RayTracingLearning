@@ -9,13 +9,15 @@ bool ConstantMedium::hit(const Ray& r, double t_min, double t_max, HitInfo& info
         if (info1.t >= info2.t) return false;
         
         if (info1.t < 0) info1.t = 0;
+        // 计算碰撞点到光线起点的距离
         float distance_inside_boundary = (info2.t - info1.t) * r.Direction().length();
+        // 计算介质中的光线传播距离
         float hit_distance = -(1 / density) * log(Random::rand01());
         if (hit_distance < distance_inside_boundary) {
             info.t = info1.t + hit_distance / r.Direction().length();
             info.position = r.At(info.t);
             info.normal = Vec3(Random::rand01(), Random::rand01(), Random::rand01());
-            info.material = material;
+            info.material = isotropic_material;
             return true;
         }
     }

@@ -11,7 +11,7 @@ public:
 	* @param density 介质的密度
 	* @param albedo 介质的反射率
 	*/
-	ConstantMedium(Ref<Object> object, double density, Ref<Texture> albedo) : object(object), density(density), material(New<Isotropic>(albedo)) {}
+	ConstantMedium(Ref<Object> object, double density, Ref<Texture> albedo) : object(object), density(density), isotropic_material(New<Isotropic>(albedo)) {}
 
 	/*
 	* @brief 判断光线是否与当前对象碰撞
@@ -30,6 +30,6 @@ public:
 private:
 	Ref<Object> object;
 	double density;
-	Ref<Material> material;
+	Ref<Isotropic> isotropic_material;
 };
 

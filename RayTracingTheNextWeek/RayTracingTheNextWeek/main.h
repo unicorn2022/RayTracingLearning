@@ -24,6 +24,7 @@
 #include "Material/Dielectric.h"
 #include "Material/Metal.h"
 #include "Material/Emit.h"
+#include "Material/Isotropic.h"
 
 #include "Texture/TextureConstant.h"
 #include "Texture/TextureChecker.h"
