@@ -10,8 +10,8 @@ RotateY::RotateY(double angle, Ref<Object> object) : object(object) {
 
 	// 计算包围盒
 	box = object->GetBox();
-	Vec3 min(INFINITY, INFINITY, INFINITY);
-	Vec3 max(-INFINITY, -INFINITY, -INFINITY);
+	Vec3 _min(INFINITY, INFINITY, INFINITY);
+	Vec3 _max(-INFINITY, -INFINITY, -INFINITY);
 	for(int i = 0; i < 2; i++)
 		for(int j = 0; j < 2; j++)
 			for (int k = 0; k < 2; k++) {
@@ -22,11 +22,11 @@ RotateY::RotateY(double angle, Ref<Object> object) : object(object) {
 				double newz = -sin_theta * x + cos_theta * z;
 				Vec3 tester(newx, y, newz);
 				for (int c = 0; c < 3; c++) {
-					if (tester[c] > max[c]) max[c] = tester[c];
-					if (tester[c] < min[c]) min[c] = tester[c];
+					if (tester[c] > _max[c]) _max[c] = tester[c];
+					if (tester[c] < _min[c]) _min[c] = tester[c];
 				}
 			}
-	box = AABB(min, max);
+	box = AABB(_min, _max);
 }
 
 bool RotateY::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const {

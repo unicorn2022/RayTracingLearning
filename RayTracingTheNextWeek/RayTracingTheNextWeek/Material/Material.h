@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include "../Utils/Utils.h"
 #include "../Math/Ray.h"
 #include "../Object/Object.h"
 

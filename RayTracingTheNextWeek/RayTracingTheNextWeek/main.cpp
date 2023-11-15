@@ -12,9 +12,9 @@ namespace {
 	int pixel[Image_Width * Image_Height];
 
 	/* 线程监控 */
-	int total_completed = 0;	// 已完成的列数
-	int completed[thread_cnt];	// 每个线程已完成的列数
-	int total[thread_cnt];		// 每个线程总共需要完成的列数
+	int total_completed = 0;	// 已完成的像素数
+	int completed[thread_cnt];	// 每个线程已完成的像素数
+	int total[thread_cnt];		// 每个线程总共需要完成的像素数
 
 	/* 世界设置 */
 	Color background(0.5, 0.7, 1.0);// 背景颜色
@@ -136,15 +136,19 @@ void Render(int L, int R, bool single, int number) {
 		// gamma 矫正
 		data[i][j].gamma();
 
-		total_completed++;
 		completed[number]++;
-		if(single) std::cerr << "\r" << "已完成: " << total_completed << "/" << Image_Height << ", (" << total_completed * 100 / Image_Height << "%)" << std::flush;
+
+		if (single) {
+			std::cout << "\r" << "已完成: " << total_completed << "/" << Image_pixel << ", ";
+			PrintPercent(total_completed, Image_pixel);
+			std::cout << std::flush;
+		}
 	}
 }
 
-int main() {
+void RenderPicture() {
 	auto t = clock();
-	Final_Scene();
+	Cornell_smoke();
 
 	// 将图片的像素编号并打乱, 从而能够随机分给不同线程
 	for (int i = 0; i < Image_pixel; i++)
@@ -153,47 +157,62 @@ int main() {
 
 	// 渲染图片
 	if (thread_cnt == 1) {
-		std::cerr << "单线程模式\n";
+		std::cout << "单线程模式\n";
 		Render(0, Image_pixel, true, 0);
 	}
 	else {
-		std::cerr << "多线程模式, 线程数: " << thread_cnt << "\n";
+		std::cout << "多线程模式, 线程数: " << thread_cnt << "\n";
 		int num = Image_pixel / thread_cnt;
 		for (int i = 0; i < thread_cnt; i++) {
 			int L = i * num, R = (i + 1) * num;
-			if(i == thread_cnt - 1) R = Image_pixel;
+			if (i == thread_cnt - 1) R = Image_pixel;
 
 			total[i] = R - L;
 			std::thread ti(Render, L, R, false, i);
 			ti.detach();
 		}
-	
+
 		// 监视渲染进度
-		while (total_completed < Image_pixel) {
-			std::cerr << "\r" << "已完成: "  <<  total_completed << "/" << Image_pixel;
-			std::cerr << "("  <<  total_completed * 100 / Image_pixel << "%): ";
+		while(true) {
+			total_completed = 0;
+			for (int i = 0; i < thread_cnt; i++) total_completed += completed[i];
+
+			std::cout << "\r" << "已完成: " << total_completed << "/" << Image_pixel;
+			PrintPercent(total_completed, Image_pixel);
 
 			for (int i = 0; i < thread_cnt; i++) {
-				if(completed[i] != total[i]) std::cerr << "(" << completed[i] * 100 / total[i] << "%) ";
-				else std::cerr << "(success) ";
+				SetConsoleColor(ConsoleColor::Yellow);
+				std::cout << i << ":";
+				SetConsoleColor(ConsoleColor::Clear);
+
+				PrintPercent(completed[i], total[i]);
 			}
-			std::cerr << std::flush;
+
+			std::cout << std::flush;
+			if (total_completed >= Image_pixel) break;
+
 			std::this_thread::sleep_for(std::chrono::milliseconds(200));
 		}
-		std::cerr << "\r" << "已完成: " << total_completed << "/" << Image_pixel << ": " << std::flush;
 	}
-	std::cerr << "\n图片渲染完成, 耗时 " << (clock() - t) / 1000.0f << "s\n";
+	std::cout << "\n图片渲染完成, 耗时 " << SetConsoleColor(ConsoleColor::Cyan) << (clock() - t) / 1000.0f << SetConsoleColor(ConsoleColor::Clear) << " s\n";
+}
+
+void OutputPicture() {
+	std::ofstream fout("../output.ppm");
 
 	// 输出图片
-	t = clock();
-
-	freopen("../output.ppm", "w", stdout);
-	std::cout << "P3\n" << Image_Width << " " << Image_Height << "\n255\n";
+	auto t = clock();
+	fout << "P3\n" << Image_Width << " " << Image_Height << "\n255\n";
 	for (int j = Image_Height - 1; j >= 0; j--)
-		for (int i = 0; i < Image_Width; i++) 
-			data[i][j].write_color(std::cout);
-	std::cerr << "图片输出完成, 耗时 " << (clock() - t) / 1000.0f << "s\n";
+		for (int i = 0; i < Image_Width; i++)
+			data[i][j].write_color(fout);
+	std::cout << "图片输出完成, 耗时 " << SetConsoleColor(ConsoleColor::Cyan) << (clock() - t) / 1000.0f << SetConsoleColor(ConsoleColor::Clear) << " s\n";
 
-	fclose(stdout);
+	fout.close();
+}
+
+int main() {
+	RenderPicture();
+	OutputPicture();
 	return 0;
 }

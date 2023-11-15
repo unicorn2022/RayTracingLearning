@@ -3,6 +3,7 @@
 #include "../config.h"
 #include "../Math/Ray.h"
 #include "../Material/Material.h"
+#include "../Utils/Utils.h"
 #include "AABB.h"
 
 class Material;

@@ -189,6 +189,7 @@
     <ClInclude Include="Texture\TextureConstant.h" />
     <ClInclude Include="Texture\TextureImage.h" />
     <ClInclude Include="Texture\TextureNoise.h" />
+    <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resource\earthmap.jpg" />

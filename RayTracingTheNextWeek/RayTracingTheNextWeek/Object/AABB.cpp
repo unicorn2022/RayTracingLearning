@@ -10,8 +10,8 @@ bool AABB::hit(const Ray& r, double t_min, double t_max) const {
 	// t2 = (max.x - origin.x) / direction.x
 	for (int i = 0; i < 3; i++) {
 		double div = 1.0 / r.Direction()[i];
-		double t1 = (min[i] - r.Origin()[i]) / r.Direction()[i];
-		double t2 = (max[i] - r.Origin()[i]) / r.Direction()[i];
+		double t1 = (_min[i] - r.Origin()[i]) / r.Direction()[i];
+		double t2 = (_max[i] - r.Origin()[i]) / r.Direction()[i];
 		if(div < 0) std::swap(t1, t2);
 		if (std::min(t2, t_max) <= std::max(t1, t_min)) return false;
 	}

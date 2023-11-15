@@ -4,13 +4,13 @@
 
 class AABB {
 public:
-	AABB() :min(Vec3(-1e5)), max(Vec3(1e5)) {}
+	AABB() :_min(Vec3(-1e5)), _max(Vec3(1e5)) {}
 
 	/*
 	* @param min 包围盒的最小坐标
 	* @param max 包围盒的最大坐标
 	*/
-	AABB(const Vec3& min, const Vec3& max) : min(min), max(max) {}
+	AABB(const Vec3& min, const Vec3& max) : _min(min), _max(max) {}
 	
 	/*
 	* @brief 判断光线是否与当前对象碰撞
@@ -24,11 +24,11 @@ public:
 	static AABB Merge(const AABB& box1, const AABB& box2);
 
 public:
-	Vec3 Min() const { return min; }
-	Vec3 Max() const { return max; }
+	Vec3 Min() const { return _min; }
+	Vec3 Max() const { return _max; }
 
 private:
-	Vec3 min;
-	Vec3 max;
+	Vec3 _min;
+	Vec3 _max;
 };
 
