@@ -150,7 +150,6 @@ void Render(int L, int R, bool single, int number) {
 
 void RenderPicture() {
 	auto t = clock();
-	Final_Scene();
 
 	// 将图片的像素编号并打乱, 从而能够随机分给不同线程
 	for (int i = 0; i < Image_pixel; i++)
@@ -180,7 +179,7 @@ void RenderPicture() {
 			for (int i = 0; i < thread_cnt; i++) total_completed += completed[i];
 
 			std::cout << "\r" << "已完成:" << SetConsoleColor(ConsoleColor::Pink) << total_completed << SetConsoleColor(ConsoleColor::Clear) << "/" << Image_pixel << ", ";
-			std::cout << "预计剩余时间:" << SetConsoleColor(ConsoleColor::Cyan) << ceil((clock() - t) / 1000.0f / total_completed * (Image_pixel - total_completed)) << SetConsoleColor(ConsoleColor::Clear) << "s ";
+			std::cout << "预计剩余时间:" << PrintLastTime(ceil((clock() - t) / 1000.0f / total_completed * (Image_pixel - total_completed)));
 
 			for (int i = 0; i < thread_cnt; i++) {
 				SetConsoleColor(ConsoleColor::Yellow);
@@ -214,6 +213,7 @@ void OutputPicture() {
 }
 
 int main() {
+	Cornell_smoke();
 	RenderPicture();
 	OutputPicture();
 	return 0;

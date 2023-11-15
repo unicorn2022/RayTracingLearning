@@ -83,16 +83,50 @@ static char SetConsoleColor(ConsoleColor color) {
 }
 
 static void PrintPercent(int now, int total) {
-	std::cerr << "(";
+	std::cout << "(";
 	if (now == total) {
 		SetConsoleColor(ConsoleColor::Green);
-		std::cerr << "success";
+		std::cout << "AC";
 		SetConsoleColor(ConsoleColor::Clear);
 	}
 	else {
 		SetConsoleColor(ConsoleColor::Red);
-		std::cerr << now * 100 / total << "%";
+		std::cout << now * 100 / total << "%";
 		SetConsoleColor(ConsoleColor::Clear);
 	}
-	std::cerr << ") ";
+	std::cout << ") ";
+}
+
+static char PrintLastTime(int t) {
+	if (t == 0) {
+		SetConsoleColor(ConsoleColor::Green);
+		std::cout << "success";
+		SetConsoleColor(ConsoleColor::Clear);
+		return ' ';
+	}
+	
+	std::cout << " ";
+	int hour = t / 3600;
+	t %= 3600;
+	int minute = t / 60;
+	int second = t % 60;
+	if (hour > 0) {
+		SetConsoleColor(ConsoleColor::Cyan);
+		std::cout << hour;
+		SetConsoleColor(ConsoleColor::Clear);
+		std::cout << "h";
+	}
+	if (minute > 0) {
+		SetConsoleColor(ConsoleColor::Cyan);
+		std::cout << minute;
+		SetConsoleColor(ConsoleColor::Clear);
+		std::cout << "m";
+	}
+	if (second > 0) {
+		SetConsoleColor(ConsoleColor::Cyan);
+		std::cout << second;
+		SetConsoleColor(ConsoleColor::Clear);
+		std::cout << "s";
+	}
+	return ' ';
 }
