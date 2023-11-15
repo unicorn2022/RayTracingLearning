@@ -85,7 +85,9 @@ void Final_Scene() {
 	// 顶部光源
 	world.Add(New<RectXZ>(123, 423, 147, 412, 550, light));
 
-	// 两个球
+	// 2个静止球 + 1个运动球
+	Vec3 center(400, 400, 200);
+	world.Add(New<SphereMoving>(center, center + Vec3(30, 0, 0), 0, 1, 50, New<Lambertian>(New<TextureConstant>(Color(0.7, 0.3, 0.1)))));
 	world.Add(New<Sphere>(Vec3(260, 150, 45), 50, New<Dielectric>(1.5)));
 	world.Add(New<Sphere>(Vec3(0, 150, 145), 50, New<Metal>(New<TextureConstant>(Color(0.8, 0.8, 0.9)), 10.0)));
 
@@ -104,7 +106,7 @@ void Final_Scene() {
 	Ref<Material> noise = New<Lambertian>(New<TextureNoise>(0.1));
 	world.Add(New<Sphere>(Vec3(220, 280, 300), 80, noise));
 
-	// 10 个球
+	// 1000 个球
 	int ns = 1000;
 	Ref<ObjectWorld> spheres = New<ObjectWorld>();
 	for(int j = 0; j < ns; j++)
@@ -148,7 +150,7 @@ void Render(int L, int R, bool single, int number) {
 
 void RenderPicture() {
 	auto t = clock();
-	Cornell_smoke();
+	Final_Scene();
 
 	// 将图片的像素编号并打乱, 从而能够随机分给不同线程
 	for (int i = 0; i < Image_pixel; i++)
@@ -177,8 +179,8 @@ void RenderPicture() {
 			total_completed = 0;
 			for (int i = 0; i < thread_cnt; i++) total_completed += completed[i];
 
-			std::cout << "\r" << "已完成: " << total_completed << "/" << Image_pixel;
-			PrintPercent(total_completed, Image_pixel);
+			std::cout << "\r" << "已完成:" << SetConsoleColor(ConsoleColor::Pink) << total_completed << SetConsoleColor(ConsoleColor::Clear) << "/" << Image_pixel << ", ";
+			std::cout << "预计剩余时间:" << SetConsoleColor(ConsoleColor::Cyan) << ceil((clock() - t) / 1000.0f / total_completed * (Image_pixel - total_completed)) << SetConsoleColor(ConsoleColor::Clear) << "s ";
 
 			for (int i = 0; i < thread_cnt; i++) {
 				SetConsoleColor(ConsoleColor::Yellow);
