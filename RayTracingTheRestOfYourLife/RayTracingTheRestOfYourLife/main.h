@@ -82,7 +82,14 @@ static char SetConsoleColor(ConsoleColor color) {
 	return '\0';
 }
 
-static void PrintPercent(int now, int total) {
+static char PrintPercent(int now, int total) {
+	int width = log10(total);
+
+	SetConsoleColor(ConsoleColor::Pink);
+	std::cout << std::setw(width) << now;
+	SetConsoleColor(ConsoleColor::Clear);
+	std::cout << "/" << std::setw(width) << total << " ";
+
 	std::cout << "(";
 	if (now == total) {
 		SetConsoleColor(ConsoleColor::Green);
@@ -95,8 +102,12 @@ static void PrintPercent(int now, int total) {
 		SetConsoleColor(ConsoleColor::Clear);
 	}
 	std::cout << ") ";
+	return ' ';
 }
 
+/*
+* @param t: 单位为 ms
+*/
 static char PrintLastTime(int t) {
 	if (t == 0) {
 		SetConsoleColor(ConsoleColor::Green);
@@ -106,10 +117,11 @@ static char PrintLastTime(int t) {
 	}
 	
 	std::cout << " ";
-	int hour = t / 3600;
-	t %= 3600;
-	int minute = t / 60;
-	int second = t % 60;
+	int hour = t / 3600000;
+	t %= 3600000;
+	int minute = t / 60000;
+	t %= 60000;
+	float second = t / 1000.0f;
 	if (hour > 0) {
 		SetConsoleColor(ConsoleColor::Cyan);
 		std::cout << hour;
@@ -120,7 +132,7 @@ static char PrintLastTime(int t) {
 		SetConsoleColor(ConsoleColor::Cyan);
 		std::cout << minute;
 		SetConsoleColor(ConsoleColor::Clear);
-		std::cout << "m";
+		std::cout << "min";
 	}
 	if (second > 0) {
 		SetConsoleColor(ConsoleColor::Cyan);

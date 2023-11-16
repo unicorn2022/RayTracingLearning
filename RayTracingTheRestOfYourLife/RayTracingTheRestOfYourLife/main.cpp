@@ -117,6 +117,7 @@ void Final_Scene() {
 }
 
 void Render(int L, int R, bool single, int number) {
+	auto t = clock();
 	for (int k = L; k < R; k++) {
 		int i = pixel[k] / Image_Height, j = pixel[k] % Image_Height;
 		// 每个像素随机采样 samples_per_pixel 次, 并取平均值
@@ -140,10 +141,11 @@ void Render(int L, int R, bool single, int number) {
 
 		completed[number]++;
 
-		if (single) {
-			std::cout << "\r" << "已完成: " << total_completed << "/" << Image_pixel << ", ";
-			PrintPercent(total_completed, Image_pixel);
-			std::cout << std::flush;
+		if (single && (total_completed = k) % 1000 == 0) {
+			system("cls");
+			std::cout << "单线程模式\n";
+			std::cout << "已完成:" << PrintPercent(total_completed, Image_pixel) << "\n";
+			std::cout << "预计剩余时间:" << PrintLastTime(ceil((clock() - t) / 1000.0f / total_completed * (Image_pixel - total_completed))) << "\n\n";
 		}
 	}
 }
@@ -158,11 +160,9 @@ void RenderPicture() {
 
 	// 渲染图片
 	if (thread_cnt == 1) {
-		std::cout << "单线程模式\n";
 		Render(0, Image_pixel, true, 0);
 	}
 	else {
-		std::cout << "多线程模式, 线程数: " << thread_cnt << "\n";
 		int num = Image_pixel / thread_cnt;
 		for (int i = 0; i < thread_cnt; i++) {
 			int L = i * num, R = (i + 1) * num;
@@ -175,27 +175,32 @@ void RenderPicture() {
 
 		// 监视渲染进度
 		while(true) {
+			system("cls");
+			
+			std::cout << "多线程模式, 线程数: " << thread_cnt << "\n\n";
 			total_completed = 0;
 			for (int i = 0; i < thread_cnt; i++) total_completed += completed[i];
 
-			std::cout << "\r" << "已完成:" << SetConsoleColor(ConsoleColor::Pink) << total_completed << SetConsoleColor(ConsoleColor::Clear) << "/" << Image_pixel << ", ";
-			std::cout << "预计剩余时间:" << PrintLastTime(ceil((clock() - t) / 1000.0f / total_completed * (Image_pixel - total_completed)));
+			std::cout << "已完成:" << PrintPercent(total_completed, Image_pixel) << " ";
+			std::cout << "预计剩余时间:" << PrintLastTime((clock() - t) * (Image_pixel - total_completed) / total_completed ) << "\n";
 
 			for (int i = 0; i < thread_cnt; i++) {
+				std::cout << "  thread ";
 				SetConsoleColor(ConsoleColor::Yellow);
-				std::cout << i << ":";
+				std::cout << i << ": ";
 				SetConsoleColor(ConsoleColor::Clear);
 
 				PrintPercent(completed[i], total[i]);
+				std::cout << "\n";
 			}
+			std::cout << "\n";
 
-			std::cout << std::flush;
 			if (total_completed >= Image_pixel) break;
 
 			std::this_thread::sleep_for(std::chrono::milliseconds(200));
 		}
 	}
-	std::cout << "\n图片渲染完成, 耗时 " << SetConsoleColor(ConsoleColor::Cyan) << (clock() - t) / 1000.0f << SetConsoleColor(ConsoleColor::Clear) << " s\n";
+	std::cout << "图片渲染完成, 耗时 " << SetConsoleColor(ConsoleColor::Cyan) << PrintLastTime((clock() - t)) << SetConsoleColor(ConsoleColor::Clear) << "\n";
 }
 
 void OutputPicture() {
@@ -207,7 +212,7 @@ void OutputPicture() {
 	for (int j = Image_Height - 1; j >= 0; j--)
 		for (int i = 0; i < Image_Width; i++)
 			data[i][j].write_color(fout);
-	std::cout << "图片输出完成, 耗时 " << SetConsoleColor(ConsoleColor::Cyan) << (clock() - t) / 1000.0f << SetConsoleColor(ConsoleColor::Clear) << " s\n";
+	std::cout << "图片输出完成, 耗时 " << SetConsoleColor(ConsoleColor::Cyan) << PrintLastTime((clock() - t)) << SetConsoleColor(ConsoleColor::Clear) << "\n";
 
 	fout.close();
 }
