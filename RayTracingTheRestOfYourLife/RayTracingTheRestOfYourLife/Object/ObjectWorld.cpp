@@ -41,28 +41,29 @@ bool ObjectWorld::hit(const Ray& r, double t_min, double t_max, HitInfo& info) c
 }
 
 Color ObjectWorld::GetColor(const Ray& r, int& depth) {
-	HitInfo record;
+	HitInfo info;
 
 	// 如果碰撞到了, 则根据材质计算反射光线
 	// 注意 t_min 需要设置一个很小的值, 否则会出现光线重复与同一个物体相交的情况
-	if (this->hit(r, 0.01, INFINITY, record)) {
-		Ray scattered;
+	if (this->hit(r, 0.01, INFINITY, info)) {
+		Ray r_out;
+		Color emit = info.material->emitted(info.u, info.v, info.position);
 		Color attenuation;
-		Color emit = record.material->emitted(record.u, record.v, record.position);
-		if (depth < max_depth && record.material->scatter(r, record, attenuation, scattered))
-			return emit + attenuation * GetColor(scattered, ++depth);
+		double pdf;
+		if (depth < max_depth && info.material->scatter(r, info, attenuation, r_out, pdf))
+			return emit + attenuation * info.material->scatter_pdf(r, info, r_out) * GetColor(r_out, ++depth) / pdf;
 		else
 			return emit;
 	}
-	// 如果不相交, 则根据方向插值背景颜色
+	// 如果不相交, 则返回黑色
 	else {
-		Vec3 direction_unit = r.Direction().normalize();
-		double t = 0.5 * (direction_unit.y() + 1);
-		return (1 - t) * Color(1.0f) + t * background;
+		return Color(0);
 	}
-	//// 如果不相交, 则返回黑色
+	//// 如果不相交, 则根据方向插值背景颜色
 	//else {
-	//	return Color(1.0f);
+	//	Vec3 direction_unit = r.Direction().normalize();
+	//	double t = 0.5 * (direction_unit.y() + 1);
+	//	return (1 - t) * Color(1.0f) + t * background;
 	//}
 	
 }

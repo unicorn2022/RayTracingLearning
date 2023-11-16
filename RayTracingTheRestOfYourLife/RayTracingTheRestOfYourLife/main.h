@@ -31,7 +31,6 @@
 #include "Texture/TextureNoise.h"
 #include "Texture/TextureImage.h"
 
-#include "config.h"
 #include "Utils/Utils.h"
 
 #include <string>
