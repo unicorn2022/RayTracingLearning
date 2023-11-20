@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <random>
 #include <memory>
 #include <vector>
@@ -6,11 +6,11 @@
 
 static const double PI = std::_Pi;
 
-/* Ëæ»úÊıÉú³ÉÆ÷ */
+/* éšæœºæ•°ç”Ÿæˆå™¨ */
 class Random {
 public:
 	/*
-	* @brief ·µ»ØÒ»¸ö[0,1)µÄËæ»úÊı
+	* @brief è¿”å›ä¸€ä¸ª[0,1)çš„éšæœºæ•°
 	*/
 	static double rand01() {
 		static std::mt19937 mt;
@@ -19,7 +19,7 @@ public:
 	}
 
 	/*
-	* @brief ·µ»Øµ¥Î»ÇòÃæÉÏµÄËæ»úµã
+	* @brief è¿”å›å•ä½çƒé¢ä¸Šçš„éšæœºç‚¹
 	*/
 	static Vec3 rand_unit_sphere() {
 		double theta = rand01() * 2 * PI;
@@ -29,6 +29,19 @@ public:
 		double y = sin(phi) * sin(theta);
 		double z = cos(phi);
 
+		return Vec3(x, y, z);
+	}
+
+	/*
+	* @brief è¿”å›éšå³æ–¹å‘, æ»¡è¶³ pdf(direction) = cos Î¸ / Ï€
+	*/
+	static Vec3 rand_cosine_direction() {
+		double r1 = rand01();
+		double r2 = rand01();
+
+		double x = cos(2 * PI * r1) * sqrt(r2);
+		double y = sin(2 * PI * r1) * sqrt(r2);
+		double z = sqrt(1 - r2);
 		return Vec3(x, y, z);
 	}
 };

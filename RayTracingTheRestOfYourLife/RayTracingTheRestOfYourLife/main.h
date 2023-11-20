@@ -81,7 +81,7 @@ static char SetConsoleColor(ConsoleColor color) {
 	return '\0';
 }
 
-static char PrintPercent(int now, int total) {
+static char PrintPercent(int now, int total, int average) {
 	int width = log10(total);
 
 	SetConsoleColor(ConsoleColor::Pink);
@@ -96,8 +96,11 @@ static char PrintPercent(int now, int total) {
 		SetConsoleColor(ConsoleColor::Clear);
 	}
 	else {
-		SetConsoleColor(ConsoleColor::Red);
-		std::cout << now * 100 / total << "%";
+		int percent = now * 100 / total;
+		if (percent > average) SetConsoleColor(ConsoleColor::Red);
+		else if (percent == average) SetConsoleColor(ConsoleColor::Blue);
+		else SetConsoleColor(ConsoleColor::Green);
+		std::cout << percent  << "%";
 		SetConsoleColor(ConsoleColor::Clear);
 	}
 	std::cout << ") ";

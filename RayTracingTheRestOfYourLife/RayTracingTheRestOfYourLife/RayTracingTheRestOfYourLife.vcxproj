@@ -138,6 +138,7 @@
     <ClInclude Include="Material\Lambertian.h" />
     <ClInclude Include="Material\Material.h" />
     <ClInclude Include="Material\Metal.h" />
+    <ClInclude Include="Math\ONB.h" />
     <ClInclude Include="Math\Perlin.h" />
     <ClInclude Include="Math\Random.h" />
     <ClInclude Include="Math\Ray.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="Material\Isotropic.cpp" />
     <ClCompile Include="Material\Lambertian.cpp" />
     <ClCompile Include="Material\Metal.cpp" />
+    <ClCompile Include="Math\ONB.cpp" />
     <ClCompile Include="Math\Perlin.cpp" />
     <ClCompile Include="Math\Vec3.cpp" />
     <ClCompile Include="Object\AABB.cpp" />

@@ -159,6 +159,9 @@
     <ClInclude Include="3rdpatry\stb_image.h">
       <Filter>头文件\3rdpatry</Filter>
     </ClInclude>
+    <ClInclude Include="Math\ONB.h">
+      <Filter>头文件\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -238,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="Texture\TextureNoise.cpp">
       <Filter>源文件\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\ONB.cpp">
+      <Filter>源文件\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

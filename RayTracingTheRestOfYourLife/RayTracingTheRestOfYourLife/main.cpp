@@ -28,8 +28,8 @@ namespace {
 	Ref<Material> red = New<Lambertian>(New<TextureConstant>(Color(0.65, 0.05, 0.05)));
 	Ref<Material> blue = New<Lambertian>(New<TextureConstant>(Color(0.05, 0.05, 0.73)));
 	Ref<Material> green = New<Lambertian>(New<TextureConstant>(Color(0.12, 0.45, 0.15)));
-	Ref<Material> white = New<Lambertian>(New<TextureConstant>(Color(0.88, 0.88, 0.88)));
-	Ref<Material> light = New<Emit>(New<TextureConstant>(Color(20, 20, 20)));
+	Ref<Material> white = New<Lambertian>(New<TextureConstant>(Color(0.73, 0.73, 0.73)));
+	Ref<Material> light = New<Emit>(New<TextureConstant>(Color(15, 15, 15)));
 	Ref<Material> ground = New<Lambertian>(New<TextureConstant>(Color(0.48, 0.83, 0.53)));
 }
 
@@ -53,12 +53,11 @@ void Cornell_smoke() {
 		world.Add(New<FlipNormal>(New<RectYZ>(0, 555, 0, 555, 555, green)));	// 左绿墙
 		world.Add(New<RectYZ>(0, 555, 0, 555, 0, red));							// 右红墙
 		
-		world.Add(New<RectXZ>(200, 350, 220, 340, 550, light));					// 顶部光源
-		world.Add(New<FlipNormal>(New<RectXZ>(200, 350, 220, 340, 550, light)));// 顶部光源
+		world.Add(New<RectXZ>(213, 343, 227, 332, 554, light));					// 顶部光源
 		
 		world.Add(New<FlipNormal>(New<RectXZ>(0, 555, 0, 555, 555, white)));	// 上白墙
 		world.Add(New<RectXZ>(0, 555, 0, 555, 0, white));						// 下白墙
-		world.Add(New<FlipNormal>(New<RectXY>(0, 555, 0, 555, 555, blue)));		// 后蓝墙
+		world.Add(New<FlipNormal>(New<RectXY>(0, 555, 0, 555, 555, white)));	// 后白墙
 
 		Ref<Box> box1 = New<Box>(Vec3(0, 0, 0), Vec3(165, 165, 165), white);
 		Ref<Box> box2 = New<Box>(Vec3(0, 0, 0), Vec3(165, 330, 165), white);
@@ -166,7 +165,7 @@ void Render(int L, int R, bool single, int number) {
 		if (single && (total_completed = k) % 1000 == 0) {
 			system("cls");
 			std::cout << "单线程模式\n";
-			std::cout << "已完成:" << PrintPercent(total_completed, Image_pixel) << "\n";
+			std::cout << "已完成:" << PrintPercent(total_completed, Image_pixel, total_completed * 100 / Image_pixel) << "\n";
 			std::cout << "预计剩余时间:" << PrintLastTime(ceil((clock() - t) / 1000.0f / total_completed * (Image_pixel - total_completed))) << "\n\n";
 		}
 	}
@@ -203,7 +202,9 @@ void RenderPicture() {
 			total_completed = 0;
 			for (int i = 0; i < thread_cnt; i++) total_completed += completed[i];
 
-			std::cout << "已完成:" << PrintPercent(total_completed, Image_pixel) << " ";
+			if (total_completed == 0) continue;
+
+			std::cout << "已完成:" << PrintPercent(total_completed, Image_pixel, total_completed * 100 / Image_pixel) << " ";
 			std::cout << "预计剩余时间:" << PrintLastTime((clock() - t) * (Image_pixel - total_completed) / total_completed ) << "\n";
 
 			for (int i = 0; i < thread_cnt; i++) {
@@ -212,7 +213,7 @@ void RenderPicture() {
 				std::cout << i << ": ";
 				SetConsoleColor(ConsoleColor::Clear);
 
-				PrintPercent(completed[i], total[i]);
+				PrintPercent(completed[i], total[i], total_completed * 100 / Image_pixel);
 				std::cout << "\n";
 			}
 			std::cout << "\n";
