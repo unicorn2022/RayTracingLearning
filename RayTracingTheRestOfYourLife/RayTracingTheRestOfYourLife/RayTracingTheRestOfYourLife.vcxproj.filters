@@ -55,6 +55,12 @@
     <Filter Include="头文件\3rdpatry">
       <UniqueIdentifier>{d3fb9d57-1649-42f8-9a84-edb1aebf702a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\PDF">
+      <UniqueIdentifier>{e79aed60-686d-4eeb-93e4-3435c2a770e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\PDF">
+      <UniqueIdentifier>{293b17ff-457c-4037-8414-1bf4e4a8ae54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -162,6 +168,15 @@
     <ClInclude Include="Math\ONB.h">
       <Filter>头文件\Math</Filter>
     </ClInclude>
+    <ClInclude Include="PDF\PDF.h">
+      <Filter>头文件\PDF</Filter>
+    </ClInclude>
+    <ClInclude Include="PDF\PDF_cos.h">
+      <Filter>头文件\PDF</Filter>
+    </ClInclude>
+    <ClInclude Include="PDF\PDF_hit.h">
+      <Filter>头文件\PDF</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -244,6 +259,12 @@
     </ClCompile>
     <ClCompile Include="Math\ONB.cpp">
       <Filter>源文件\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="PDF\PDF_cos.cpp">
+      <Filter>源文件\PDF</Filter>
+    </ClCompile>
+    <ClCompile Include="PDF\PDF_hit.cpp">
+      <Filter>源文件\PDF</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

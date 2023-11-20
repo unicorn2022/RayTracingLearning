@@ -33,5 +33,23 @@ public:
 	* @brief 获取当前对象的包围盒
 	*/
 	virtual AABB GetBox() const = 0;
+
+	/*
+	* @brief 获取采样方向的 pdf 值
+	* @param origin 观察点
+	* @param direction 观察方向
+	*/
+	virtual double pdf_value(const Point3& origin, const Vec3 direction) const {
+		return 0;
+	}
+
+	/*
+	* @brief 在当前对象的表面随机采样一个点, 从 origin 看向该点
+	* @param origin 观察点
+	* @return 观察方向
+	*/
+	virtual Vec3 random(const Point3& origin) const {
+		return Vec3(1, 0, 0);
+	}
 };
 

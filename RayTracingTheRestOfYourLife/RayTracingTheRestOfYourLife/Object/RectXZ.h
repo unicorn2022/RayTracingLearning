@@ -1,32 +1,46 @@
-#pragma once
+ï»¿#pragma once
 #include "Object.h"
 class RectXZ : public Object {
 public:
 	/*
-	* @param x1 x Öá×îĞ¡Öµ
-	* @param x2 x Öá×î´óÖµ
-	* @param z1 z Öá×îĞ¡Öµ
-	* @param z2 z Öá×î´óÖµ
-	* @param k	y ÖáÖµ
-	* @param material ²ÄÖÊ
+	* @param x1 x è½´æœ€å°å€¼
+	* @param x2 x è½´æœ€å¤§å€¼
+	* @param z1 z è½´æœ€å°å€¼
+	* @param z2 z è½´æœ€å¤§å€¼
+	* @param k	y è½´å€¼
+	* @param material æè´¨
 	*/
 	RectXZ(double x1, double x2, double z1, double z2, double k, Ref<Material> material)
 		: x1(x1), x2(x2), z1(z1), z2(z2), k(k), material(material) {}
 
 	/*
-	* @brief ÅĞ¶Ï¹âÏßÊÇ·ñÓëµ±Ç°¶ÔÏóÅö×²
-	* @param r ¹âÏß
-	* @param t_min ¹âÏßµÄ×îĞ¡ t Öµ
-	* @param t_max ¹âÏßµÄ×î´ó t Öµ
-	* @param info Åö×²µãĞÅÏ¢
-	* @return ÊÇ·ñÅö×²
+	* @brief åˆ¤æ–­å…‰çº¿æ˜¯å¦ä¸å½“å‰å¯¹è±¡ç¢°æ’
+	* @param r å…‰çº¿
+	* @param t_min å…‰çº¿çš„æœ€å° t å€¼
+	* @param t_max å…‰çº¿çš„æœ€å¤§ t å€¼
+	* @param info ç¢°æ’ç‚¹ä¿¡æ¯
+	* @return æ˜¯å¦ç¢°æ’
 	*/
 	virtual bool hit(const Ray& r, double t_min, double t_max, HitInfo& info) const override;
 
 	/*
-	* @brief »ñÈ¡µ±Ç°¶ÔÏóµÄ°üÎ§ºĞ
+	* @brief è·å–å½“å‰å¯¹è±¡çš„åŒ…å›´ç›’
 	*/
 	virtual AABB GetBox() const override;
+
+	/*
+	* @brief è·å–é‡‡æ ·æ–¹å‘çš„ pdf å€¼
+	* @param origin è§‚å¯Ÿç‚¹
+	* @param direction è§‚å¯Ÿæ–¹å‘
+	*/
+	virtual double pdf_value(const Point3& origin, const Vec3 direction) const override;
+
+	/*
+	* @brief åœ¨å½“å‰å¯¹è±¡çš„è¡¨é¢éšæœºé‡‡æ ·ä¸€ä¸ªç‚¹, ä» origin çœ‹å‘è¯¥ç‚¹
+	* @param origin è§‚å¯Ÿç‚¹
+	* @return è§‚å¯Ÿæ–¹å‘
+	*/
+	virtual Vec3 random(const Point3& origin) const override;
 
 private:
 	Ref<Material> material;

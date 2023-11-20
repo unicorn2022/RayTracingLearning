@@ -157,6 +157,9 @@
     <ClInclude Include="Object\Transform\FlipNormal.h" />
     <ClInclude Include="Object\Transform\RotateY.h" />
     <ClInclude Include="Object\Transform\Translate.h" />
+    <ClInclude Include="PDF\PDF.h" />
+    <ClInclude Include="PDF\PDF_cos.h" />
+    <ClInclude Include="PDF\PDF_hit.h" />
     <ClInclude Include="Texture\Texture.h" />
     <ClInclude Include="Texture\TextureChecker.h" />
     <ClInclude Include="Texture\TextureConstant.h" />
@@ -188,6 +191,8 @@
     <ClCompile Include="Object\Transform\FlipNormal.cpp" />
     <ClCompile Include="Object\Transform\RotateY.cpp" />
     <ClCompile Include="Object\Transform\Translate.cpp" />
+    <ClCompile Include="PDF\PDF_cos.cpp" />
+    <ClCompile Include="PDF\PDF_hit.cpp" />
     <ClCompile Include="Texture\TextureChecker.cpp" />
     <ClCompile Include="Texture\TextureConstant.cpp" />
     <ClCompile Include="Texture\TextureImage.cpp" />

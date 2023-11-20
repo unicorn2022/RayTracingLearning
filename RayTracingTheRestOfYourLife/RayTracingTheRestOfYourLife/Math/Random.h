@@ -19,6 +19,13 @@ public:
 	}
 
 	/*
+	* @brief 返回一个[L,R)的随机数
+	*/
+	static double rand_between(double L, double R) {
+		return L + rand01() * (R - L);
+	}
+
+	/*
 	* @brief 返回单位球面上的随机点
 	*/
 	static Vec3 rand_unit_sphere() {

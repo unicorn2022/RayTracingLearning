@@ -1,4 +1,5 @@
-#include "RectXZ.h"
+﻿#include "RectXZ.h"
+#include "../Math/Random.h"
 
 bool RectXZ::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const {
     double t = (k - r.Origin().y()) / r.Direction().y();
@@ -22,4 +23,20 @@ AABB RectXZ::GetBox() const {
         Vec3(x1, k - 0.0001, z1),
         Vec3(x2, k + 0.0001, z2)
     );
+}
+
+double RectXZ::pdf_value(const Point3& origin, const Vec3 direction) const {
+    HitInfo info;
+    if (this->hit(Ray(origin, direction), 1e-3, INFINITY, info)) {
+        double area = (x2 - x1) * (z2 - z1);
+        double distance_squared = info.t * info.t * direction.length_squared();
+        double cosine = fabs(direction.dot(info.normal) / direction.length());
+        return distance_squared / (cosine * area);
+    }
+    else return 0;
+}
+
+Vec3 RectXZ::random(const Point3& origin) const {
+    Point3 on_light = Vec3(Random::rand_between(x1, x2), k, Random::rand_between(z1, z2));
+    return on_light - origin;
 }
