@@ -1,10 +1,13 @@
-#include "Emit.h"
+ï»¿#include "Emit.h"
 
 bool Emit::scatter(const Ray& r_in, const HitInfo& info, Color& attenuation, Ray& r_out) const {
-    // ¹âÏßµ½´ï¹âÔ´Ö®ºó, ¾Í²»ÔÙÉ¢ÉäÁË
+    // å…‰çº¿åˆ°è¾¾å…‰æºä¹‹åŽ, å°±ä¸å†æ•£å°„äº†
     return false;
 }
 
-Color Emit::emitted(double u, double v, const Point3& p) const {
-    return emit->Value(u, v, p);
+Color Emit::emitted(const Ray& r_in, const HitInfo& info, double u, double v, const Point3& p) const {
+    if (info.normal.dot(r_in.Direction()) < 0)
+        return emit->Value(u, v, p);
+    else
+        return Color();
 }

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Material.h"
 #include "../config.h"
 #include "../Texture/Texture.h"
@@ -6,27 +6,29 @@
 class Emit : public Material {
 public:
 	/*
-	* @param emit ×Ô·¢¹âÎÆÀí
+	* @param emit è‡ªå‘å…‰çº¹ç†
 	*/
 	Emit(Ref<Texture> emit) : emit(emit) {}
 
 	/*
-	* @brief Éú³ÉÉ¢Éä¹âÏß
-	* @param r_in ÈëÉä¹âÏß
-	* @param info Åö×²ĞÅÏ¢
-	* @param attenuation µ±·¢ÉúÉ¢ÉäÊ±, ¹âÇ¿ÈçºÎË¥¼õ, ·ÖÎªrgbÈı¸ö·ÖÁ¿
-	* @param r_out É¢Éä¹âÏß
-	* @return ÊÇ·ñµÃµ½ÁËÉ¢Éä¹âÏß
+	* @brief ç”Ÿæˆæ•£å°„å…‰çº¿
+	* @param r_in å…¥å°„å…‰çº¿
+	* @param info ç¢°æ’ä¿¡æ¯
+	* @param attenuation å½“å‘ç”Ÿæ•£å°„æ—¶, å…‰å¼ºå¦‚ä½•è¡°å‡, åˆ†ä¸ºrgbä¸‰ä¸ªåˆ†é‡
+	* @param r_out æ•£å°„å…‰çº¿
+	* @return æ˜¯å¦å¾—åˆ°äº†æ•£å°„å…‰çº¿
 	*/
 	virtual bool scatter(const Ray& r_in, const HitInfo& info, Color& attenuation, Ray& r_out) const override;
 
 	/*
-	* @brief ×Ô·¢¹â
-	* @param u uv×ø±ê
-	* @param v uv×ø±ê
-	* @param p Åö×²µã
+	* @brief è‡ªå‘å…‰
+	* @param r_in å…¥å°„å…‰çº¿
+	* @param info ç¢°æ’ä¿¡æ¯
+	* @param u uvåæ ‡
+	* @param v uvåæ ‡
+	* @param p ç¢°æ’ç‚¹
 	*/
-	virtual Color emitted(double u, double v, const Point3& p) const override;
+	virtual Color emitted(const Ray& r_in, const HitInfo& info, double u, double v, const Point3& p) const override;
 
 private:
 	Ref<Texture> emit;

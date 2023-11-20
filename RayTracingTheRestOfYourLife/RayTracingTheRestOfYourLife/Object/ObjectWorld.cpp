@@ -1,5 +1,6 @@
 ﻿#include "ObjectWorld.h"
 #include "../config.h"
+#include "../Math/Random.h"
 
 #include <ctime>
 
@@ -47,11 +48,32 @@ Color ObjectWorld::GetColor(const Ray& r, int& depth) {
 	// 注意 t_min 需要设置一个很小的值, 否则会出现光线重复与同一个物体相交的情况
 	if (this->hit(r, 0.01, INFINITY, info)) {
 		Ray r_out;
-		Color emit = info.material->emitted(info.u, info.v, info.position);
+		Color emit = info.material->emitted(r, info, info.u, info.v, info.position);
 		Color attenuation;
 		double pdf;
-		if (depth < max_depth && info.material->scatter(r, info, attenuation, r_out, pdf))
+
+		if (depth < max_depth && info.material->scatter(r, info, attenuation, r_out, pdf)) {
+			// 直接光源采样: 在光源上随机采样一个点
+			Point3 on_light = Vec3(213 + Random::rand01() * (343 - 213), 554, 227 + Random::rand01() * (332 - 227));
+			// 计算方向及距离
+			Vec3 direction = on_light - info.position;
+			double distance_squared = direction.length_squared();
+			direction = direction.normalize();
+			if(direction.dot(info.normal) < 0) return emit;
+
+			// 计算 pdf
+			double A = (343 - 213) * (332 - 227);
+			double cos_alpha = fabs(direction.y());
+			if (cos_alpha < 1e-6) return emit;
+
+			// pdf = distance^2 / (cos_alpha * A)
+			pdf = distance_squared / (cos_alpha * A);
+
+			// 向光源方向发射光线
+			r_out = Ray(info.position, direction, r.Time());
+
 			return emit + attenuation * info.material->scatter_pdf(r, info, r_out) * GetColor(r_out, ++depth) / pdf;
+		}
 		else
 			return emit;
 	}

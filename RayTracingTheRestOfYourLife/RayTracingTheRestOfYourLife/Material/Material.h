@@ -45,11 +45,13 @@ public:
 
 	/*
 	* @brief 自发光
+	* @param r_in 入射光线
+	* @param info 碰撞信息
 	* @param u uv坐标
 	* @param v uv坐标
 	* @param p 碰撞点
 	*/
-	virtual Color emitted(double u, double v, const Point3& p) const {
+	virtual Color emitted(const Ray& r_in, const HitInfo& info, double u, double v, const Point3& p) const {
 		return Color(0, 0, 0);
 	}
 };

@@ -53,7 +53,7 @@ void Cornell_smoke() {
 		world.Add(New<FlipNormal>(New<RectYZ>(0, 555, 0, 555, 555, green)));	// 左绿墙
 		world.Add(New<RectYZ>(0, 555, 0, 555, 0, red));							// 右红墙
 		
-		world.Add(New<RectXZ>(213, 343, 227, 332, 554, light));					// 顶部光源
+		world.Add(New<FlipNormal>(New<RectXZ>(213, 343, 227, 332, 554, light)));					// 顶部光源
 		
 		world.Add(New<FlipNormal>(New<RectXZ>(0, 555, 0, 555, 555, white)));	// 上白墙
 		world.Add(New<RectXZ>(0, 555, 0, 555, 0, white));						// 下白墙
