@@ -177,6 +177,9 @@
     <ClInclude Include="PDF\PDF_hit.h">
       <Filter>头文件\PDF</Filter>
     </ClInclude>
+    <ClInclude Include="PDF\PDF_mixture.h">
+      <Filter>头文件\PDF</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -264,6 +267,9 @@
       <Filter>源文件\PDF</Filter>
     </ClCompile>
     <ClCompile Include="PDF\PDF_hit.cpp">
+      <Filter>源文件\PDF</Filter>
+    </ClCompile>
+    <ClCompile Include="PDF\PDF_mixture.cpp">
       <Filter>源文件\PDF</Filter>
     </ClCompile>
   </ItemGroup>

@@ -5,6 +5,7 @@
 #include "../Object/Transform/FlipNormal.h"
 #include "../PDF/PDF_hit.h"
 #include "../PDF/PDF_cos.h"
+#include "../PDF/PDF_mixture.h"
 
 #include <ctime>
 
@@ -58,13 +59,12 @@ Color ObjectWorld::GetColor(const Ray& r, int& depth) {
 
 		if (depth < max_depth && info.material->scatter(r, info, attenuation, r_out, pdf)) {
 			Ref<RectXZ> light = New<RectXZ>(213, 343, 227, 332, 554, nullptr);
-			PDF_hit pdf_hit(light, info.normal);
-			r_out = Ray(info.position, pdf_hit.generate(), r.Time());
-			pdf = pdf_hit.value(r_out.Direction());
-			if (pdf < 0) {
-				std::cout << "pdf < 0";
-				exit(-1);
-			}
+			Ref<PDF_hit> pdf_hit = New<PDF_hit>(light, info.position);
+			Ref<PDF_cos> pdf_cos = New<PDF_cos>(info.normal);
+			PDF_mixture pdf_mixture(pdf_hit, pdf_cos, 0.8);
+
+			r_out = Ray(info.position, pdf_mixture.generate(), r.Time());
+			pdf = pdf_mixture.value(r_out.Direction());
 			return emit + attenuation * info.material->scatter_pdf(r, info, r_out) * GetColor(r_out, ++depth) / pdf;		
 		}
 		else

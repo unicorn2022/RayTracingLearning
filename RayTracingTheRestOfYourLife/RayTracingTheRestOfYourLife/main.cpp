@@ -162,11 +162,11 @@ void Render(int L, int R, bool single, int number) {
 
 		completed[number]++;
 
-		if (single && (total_completed = k) % 1000 == 0) {
+		if (single && (total_completed = k) % 1000 == 1) {
 			system("cls");
 			std::cout << "单线程模式\n";
 			std::cout << "已完成:" << PrintPercent(total_completed, Image_pixel, total_completed * 100 / Image_pixel) << "\n";
-			std::cout << "预计剩余时间:" << PrintLastTime(ceil((clock() - t) / 1000.0f / total_completed * (Image_pixel - total_completed))) << "\n\n";
+			std::cout << "预计剩余时间:" << PrintLastTime((clock() - t) * (Image_pixel - total_completed) / total_completed ) << "\n\n";
 		}
 	}
 }
