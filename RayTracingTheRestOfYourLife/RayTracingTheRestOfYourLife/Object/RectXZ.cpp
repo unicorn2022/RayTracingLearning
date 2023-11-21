@@ -31,6 +31,7 @@ double RectXZ::pdf_value(const Point3& origin, const Vec3 direction) const {
         double area = (x2 - x1) * (z2 - z1);
         double distance_squared = info.t * info.t * direction.length_squared();
         double cosine = fabs(direction.dot(info.normal) / direction.length());
+        // pdf = distance^2 / (cos_alpha * A)
         return distance_squared / (cosine * area);
     }
     else return 0;
