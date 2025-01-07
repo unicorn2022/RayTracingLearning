@@ -4,7 +4,7 @@
 #include <vector>
 #include "../Math/Vec3.h"
 
-static const double PI = std::_Pi;
+static const double PI = 3.1415926535;
 
 /* 随机数生成器 */
 class Random {

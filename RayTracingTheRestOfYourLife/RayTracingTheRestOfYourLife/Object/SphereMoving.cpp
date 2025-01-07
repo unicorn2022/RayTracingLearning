@@ -1,6 +1,6 @@
 ﻿#include "SphereMoving.h"
 #include <random>
-static const double PI = std::_Pi;
+static const double PI = 3.1415926535;
 
 bool SphereMoving::hit(const Ray& r, double t_min, double t_max, HitInfo& info) const {
 	// 根据公式判断是否相交

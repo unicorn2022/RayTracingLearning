@@ -1,7 +1,7 @@
 ﻿#include "RotateY.h"
 #include <random>
 #include <cmath>
-static const double PI = std::_Pi;
+static const double PI = 3.1415926535;
 
 RotateY::RotateY(double angle, Ref<Object> object) : object(object) {
 	double radians = angle * PI / 180.0;
