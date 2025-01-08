@@ -30,7 +30,8 @@ public:
 	*/
 	static Vec3 rand_unit_sphere() {
 		double theta = rand01() * 2 * PI;
-		double phi = rand01() * PI;
+		//double phi = rand01() * PI;
+		double phi = acos(1 - 2 * rand01());
 
 		double x = sin(phi) * cos(theta);
 		double y = sin(phi) * sin(theta);
